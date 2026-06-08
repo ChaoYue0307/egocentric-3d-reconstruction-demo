@@ -1,0 +1,6 @@
+data_root: /Users/chaoyue/Library/CloudStorage/Dropbox/Ropedia/data/sample/xperience-10m-sample
+video: fisheye_cam0.mp4
+output_dir: outputs/sample_demo
+frame_stride: 180
+max_frames: 24
+camera_name: cam0

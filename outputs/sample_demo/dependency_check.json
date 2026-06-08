@@ -1,0 +1,22 @@
+{
+  "colmap": {
+    "available": false,
+    "path": null
+  },
+  "ns-process-data": {
+    "available": false,
+    "path": null
+  },
+  "ns-train": {
+    "available": false,
+    "path": null
+  },
+  "instant-ngp": {
+    "available": false,
+    "path": null
+  },
+  "python": {
+    "available": false,
+    "path": null
+  }
+}

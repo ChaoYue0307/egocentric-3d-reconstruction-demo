@@ -1,0 +1,6 @@
+{
+  "num_exported_poses": 200,
+  "num_point_cloud_points": 4089,
+  "pose_file": "slam_poses_tum.txt",
+  "point_cloud_preview": "slam_point_cloud_preview.ply"
+}
