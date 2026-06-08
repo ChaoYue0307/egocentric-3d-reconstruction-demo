@@ -12,6 +12,8 @@ outputs/sample_demo/frames/*
 !outputs/sample_demo/nerf_3dgs_templates.sh
 !outputs/sample_demo/failure_analysis.md
 !outputs/sample_demo/slam_summary.json
+outputs/sample_demo/slam_point_cloud_preview.ply
+outputs/sample_demo/slam_poses_tum.txt
 data/
 *.hdf5
 *.mp4
