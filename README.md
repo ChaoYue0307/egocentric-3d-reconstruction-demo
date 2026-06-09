@@ -44,7 +44,7 @@ export DATA_ROOT=/path/to/xperience-10m-sample
 
 The expected directory contains `annotation.hdf5` and camera videos such as
 `fisheye_cam0.mp4`.
-See `DATA_NOTICE.md` for the minimal data contract.
+See `DATA_NOTICE.md`, `DATA_CARD.md`, and `EVALUATION_CARD.md` for the data contract, intended use, outputs, and limitations.
 
 ## Run The Preparation Script
 
