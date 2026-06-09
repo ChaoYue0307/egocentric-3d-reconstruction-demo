@@ -15,9 +15,8 @@ Open the visual walkthrough:
 - Web page: https://chaoyue0307.github.io/egocentric-3d-reconstruction-demo/
 - Local copy: open `docs/index.html` in a browser.
 
-The page explains the pipeline stage by stage and shows why egocentric
-reconstruction is harder than static multi-view reconstruction. A glossary lives
-in `docs/concepts.md`.
+The page includes a stage-by-stage pipeline, a camera-path visual, command map,
+and failure-mode checklist. A glossary lives in `docs/concepts.md`.
 
 ## What You Will Learn
 
@@ -58,6 +57,16 @@ python scripts/reconstruction_demo.py \
 
 This command does not require COLMAP, NeRFStudio, or 3DGS to be installed. It
 checks whether those tools are available and still writes the tutorial artifacts.
+
+## Repository Map
+
+| Path | Purpose |
+| --- | --- |
+| `scripts/reconstruction_demo.py` | frame extraction, calibration export, SLAM export, and command generation |
+| `docs/index.html` | interactive reconstruction tutorial webpage |
+| `docs/concepts.md` | glossary for reconstruction and neural rendering terms |
+| `outputs/sample_demo/calibration.json` | sample calibration export |
+| `outputs/sample_demo/failure_analysis.md` | reconstruction failure-mode checklist |
 
 ## Outputs
 

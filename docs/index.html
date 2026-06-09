@@ -7,11 +7,19 @@
   <style>
     :root { color-scheme: light dark; --bg:#08111f; --panel:#0e1b2e; --text:#e5edf8; --muted:#9fb0c9; --line:#263b5f; --a:#60a5fa; --b:#f59e0b; --c:#34d399; --danger:#fb7185; }
     body { margin:0; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color:var(--text); background: radial-gradient(circle at 85% 0%, #3b1d0a, transparent 30%), linear-gradient(160deg, #08111f, #0f172a); }
+    a { color: inherit; text-decoration: none; }
+    .topbar { position: sticky; top:0; z-index:5; backdrop-filter: blur(18px); background: rgba(8,17,31,.72); border-bottom:1px solid rgba(148,163,184,.16); }
+    .topbar-inner { max-width:1180px; margin:auto; display:flex; justify-content:space-between; align-items:center; gap:16px; padding:12px 20px; }
+    .nav-links { display:flex; gap:10px; flex-wrap:wrap; }
+    .nav-links a, .hero-actions a { border:1px solid var(--line); border-radius:999px; padding:8px 12px; color:var(--muted); font-size:.9rem; }
+    .nav-links a:hover, .hero-actions a:hover { border-color:var(--a); color:var(--text); }
     main { max-width:1180px; margin:auto; padding:40px 20px 72px; }
     h1 { font-size:clamp(2.2rem, 6vw, 4.6rem); line-height:.98; letter-spacing:-.06em; margin:0 0 18px; }
     h2 { margin-top:0; letter-spacing:-.03em; }
     p, li { color:var(--muted); line-height:1.65; }
     .card { background:color-mix(in srgb, var(--panel) 88%, transparent); border:1px solid var(--line); border-radius:24px; padding:24px; box-shadow:0 24px 90px rgba(0,0,0,.22); }
+    .hero-actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:20px; }
+    .hero-actions a.primary { background:linear-gradient(135deg,var(--a),var(--b)); border:0; color:#07101e; font-weight:800; }
     .hero { display:grid; grid-template-columns:1.35fr .85fr; gap:20px; margin-bottom:20px; }
     .stats { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
     .stat { background:#07101e; border:1px solid var(--line); border-radius:18px; padding:16px; }
@@ -23,16 +31,40 @@
     .risk-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
     .risk { border:1px solid var(--line); border-radius:18px; padding:16px; background:#07101e; }
     .risk strong { color:var(--danger); }
+    .scene { display:grid; grid-template-columns:1fr 1fr; gap:20px; margin:20px 0; }
+    .orbit { min-height:280px; position:relative; overflow:hidden; }
+    .orbit svg { width:100%; height:280px; display:block; }
+    .legend { display:grid; gap:10px; }
+    .legend div { border:1px solid var(--line); background:#07101e; border-radius:16px; padding:14px; }
+    .legend b { color:var(--c); }
+    .command-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+    .command-card { border:1px solid var(--line); border-radius:18px; padding:16px; background:#07101e; }
+    .command-card b { color:var(--a); display:block; margin-bottom:8px; }
     pre { overflow:auto; border:1px solid var(--line); border-radius:16px; padding:16px; background:#020617; color:#bfdbfe; }
-    @media (max-width:900px){ .hero,.pipeline,.risk-grid,.stats{grid-template-columns:1fr;} }
+    @media (max-width:900px){ .hero,.pipeline,.risk-grid,.stats,.scene,.command-grid{grid-template-columns:1fr;} .topbar-inner{align-items:flex-start; flex-direction:column;} }
   </style>
 </head>
 <body>
+<header class="topbar">
+  <div class="topbar-inner">
+    <strong>Egocentric 3D Reconstruction</strong>
+    <nav class="nav-links">
+      <a href="#pipeline">Pipeline</a>
+      <a href="#poses">Camera Path</a>
+      <a href="#failures">Failure Modes</a>
+      <a href="https://github.com/ChaoYue0307/egocentric-3d-reconstruction-demo">GitHub</a>
+    </nav>
+  </div>
+</header>
 <main>
   <section class="hero">
     <div class="card">
       <h1>From egocentric video to a renderable 3D scene</h1>
       <p>This walkthrough follows the reconstruction preparation path: sample frames, export calibration, align poses, generate COLMAP commands, then move toward NeRF or 3D Gaussian Splatting.</p>
+      <div class="hero-actions">
+        <a class="primary" href="#pipeline">Walk through the pipeline</a>
+        <a href="https://github.com/ChaoYue0307/egocentric-3d-reconstruction-demo/blob/main/docs/concepts.md">Read concepts</a>
+      </div>
     </div>
     <div class="card">
       <h2>Sample Outputs</h2>
@@ -44,7 +76,37 @@
     </div>
   </section>
 
-  <section class="pipeline">
+  <section class="card" id="poses">
+    <h2>Camera Path Intuition</h2>
+    <div class="scene">
+      <div class="orbit">
+        <svg viewBox="0 0 560 300" role="img" aria-label="Stylized SLAM camera path and point cloud">
+          <defs>
+            <linearGradient id="pathGrad" x1="0" x2="1">
+              <stop offset="0" stop-color="#60a5fa"/>
+              <stop offset="1" stop-color="#f59e0b"/>
+            </linearGradient>
+          </defs>
+          <rect x="0" y="0" width="560" height="300" rx="28" fill="#07101e" stroke="#263b5f"/>
+          <g fill="#334155">
+            <circle cx="370" cy="86" r="3"/><circle cx="402" cy="116" r="2"/><circle cx="286" cy="88" r="2"/><circle cx="250" cy="170" r="3"/><circle cx="420" cy="190" r="2"/><circle cx="160" cy="146" r="2"/><circle cx="315" cy="220" r="3"/><circle cx="190" cy="92" r="2"/>
+          </g>
+          <path d="M88 222 C150 154, 198 214, 248 148 S352 86, 420 128 S458 222, 496 172" fill="none" stroke="url(#pathGrad)" stroke-width="6" stroke-linecap="round"/>
+          <g fill="#e5edf8" stroke="#07101e" stroke-width="3">
+            <circle cx="88" cy="222" r="9"/><circle cx="248" cy="148" r="9"/><circle cx="420" cy="128" r="9"/><circle cx="496" cy="172" r="9"/>
+          </g>
+          <text x="40" y="42" fill="#9fb0c9" font-size="16">SLAM path + sparse points</text>
+        </svg>
+      </div>
+      <div class="legend">
+        <div><b>Pose</b><p>A camera position and orientation at one timestamp.</p></div>
+        <div><b>Point cloud</b><p>Sparse 3D points reconstructed from visual tracking.</p></div>
+        <div><b>Novel view</b><p>A synthesized camera view rendered from the learned scene.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pipeline" id="pipeline">
     <button class="stage active" data-stage="frames"><span>Stage 1</span><strong>Frames</strong><p>Turn video into images with enough overlap for matching.</p></button>
     <button class="stage" data-stage="calib"><span>Stage 2</span><strong>Calibration</strong><p>Use intrinsics and distortion to interpret pixels as rays.</p></button>
     <button class="stage" data-stage="slam"><span>Stage 3</span><strong>SLAM</strong><p>Inspect the existing camera path and sparse point cloud.</p></button>
@@ -58,7 +120,16 @@
     <pre id="stageCommand">python scripts/reconstruction_demo.py --frame-stride 180 --max-frames 24</pre>
   </section>
 
-  <section class="card" style="margin-top:20px">
+  <section class="card">
+    <h2>Command Map</h2>
+    <div class="command-grid">
+      <div class="command-card"><b>Prepare</b><p>Extract frames and export calibration from the sample episode.</p></div>
+      <div class="command-card"><b>Reconstruct</b><p>Run COLMAP feature extraction, matching, mapping, and undistortion.</p></div>
+      <div class="command-card"><b>Render</b><p>Use NeRFStudio or 3DGS templates after poses and images are ready.</p></div>
+    </div>
+  </section>
+
+  <section class="card" style="margin-top:20px" id="failures">
     <h2>Why First-Person Reconstruction Fails</h2>
     <div class="risk-grid">
       <div class="risk"><strong>Motion blur</strong><p>Fast head or hand movement weakens feature matches.</p></div>
