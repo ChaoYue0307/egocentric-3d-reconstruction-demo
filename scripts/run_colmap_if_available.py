@@ -23,6 +23,7 @@ def write_report(output_dir: Path, report: dict) -> None:
     text = f"""# COLMAP Run Report
 
 - COLMAP status: {status}
+- COLMAP path: {report["colmap_path"]}
 - Command template: `{report["commands"]}`
 - Executed: {report["executed"]}
 - Exit code: {report["exit_code"]}
@@ -32,7 +33,14 @@ def write_report(output_dir: Path, report: dict) -> None:
 Install COLMAP and rerun:
 
 ```bash
+brew install colmap
 python scripts/run_colmap_if_available.py --run
+```
+
+When the command writes a COLMAP sparse text model, parse it with:
+
+```bash
+python scripts/reconstruction_demo.py --parse-colmap-only --colmap-model outputs/sample_demo/colmap/sparse/0 --output-dir outputs/sample_demo
 ```
 """
     (output_dir / "colmap_run_report.md").write_text(text, encoding="utf-8")

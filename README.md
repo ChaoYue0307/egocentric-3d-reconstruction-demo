@@ -17,6 +17,8 @@ failure cases for egocentric footage.
 ![Animated reconstruction demo loop](docs/assets/demo_loop.svg)
 ![Live tutorial screenshot](docs/assets/live_screenshot.png)
 
+Short walkthrough recording: [`docs/assets/walkthrough.webm`](docs/assets/walkthrough.webm)
+
 ## Interactive Tutorial
 
 Open the visual walkthrough:
@@ -91,6 +93,7 @@ To verify whether COLMAP is installed and run the generated commands when it is
 available:
 
 ```bash
+brew install colmap
 python scripts/run_colmap_if_available.py --run
 ```
 
