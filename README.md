@@ -12,11 +12,8 @@ failure cases for egocentric footage.
 
 Open the visual walkthrough:
 
-```bash
-python3 -m http.server 8000
-```
-
-Then visit `http://localhost:8000/docs/`.
+- Web page: https://chaoyue0307.github.io/egocentric-3d-reconstruction-demo/
+- Local copy: open `docs/index.html` in a browser.
 
 The page explains the pipeline stage by stage and shows why egocentric
 reconstruction is harder than static multi-view reconstruction. A glossary lives
