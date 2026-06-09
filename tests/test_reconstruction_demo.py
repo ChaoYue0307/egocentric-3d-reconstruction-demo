@@ -8,7 +8,7 @@ import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 
-from reconstruction_demo import as_jsonable, build_frames_manifest, export_slam, read_slam_records  # noqa: E402
+from reconstruction_demo import as_jsonable, build_frames_manifest, export_slam, parse_colmap_model, read_slam_records, write_colmap_summary  # noqa: E402
 
 
 def make_annotation(path: Path) -> None:
@@ -51,3 +51,27 @@ def test_build_frames_manifest_matches_nearest_pose() -> None:
     manifest = build_frames_manifest(frames, calibration, slam, "cam0")
     assert manifest[0]["camera_intrinsics"] == [1, 2, 3, 4]
     assert manifest[0]["nearest_slam_pose"]["timestamp"] == "100"
+
+
+def test_parse_colmap_model_text_files(tmp_path: Path) -> None:
+    model_dir = tmp_path / "sparse" / "0"
+    model_dir.mkdir(parents=True)
+    (model_dir / "cameras.txt").write_text("1 PINHOLE 640 480 500 500 320 240\n", encoding="utf-8")
+    (model_dir / "images.txt").write_text(
+        "1 1 0 0 0 0 0 0 1 frame_00000.jpg\n"
+        "10 20 1 30 40 2\n",
+        encoding="utf-8",
+    )
+    (model_dir / "points3D.txt").write_text(
+        "1 0.0 1.0 2.0 255 255 255 0.5 1 10\n"
+        "2 1.0 2.0 3.0 255 255 255 0.7 1 20\n",
+        encoding="utf-8",
+    )
+    summary = parse_colmap_model(model_dir)
+    assert summary["num_cameras"] == 1
+    assert summary["num_registered_images"] == 1
+    assert summary["num_sparse_points"] == 2
+    assert summary["mean_reprojection_error"] == 0.6
+    write_colmap_summary(tmp_path, summary)
+    assert (tmp_path / "colmap_summary.json").exists()
+    assert (tmp_path / "colmap_summary.svg").exists()

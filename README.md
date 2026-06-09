@@ -13,6 +13,8 @@ extracts video frames, exports camera calibration, writes a SLAM trajectory,
 generates COLMAP and neural-rendering command templates, and explains common
 failure cases for egocentric footage.
 
+![Egocentric 3D reconstruction tutorial preview](docs/assets/readme_preview.svg)
+
 ## Interactive Tutorial
 
 Open the visual walkthrough:
@@ -63,6 +65,23 @@ python scripts/reconstruction_demo.py \
 This command does not require COLMAP, NeRFStudio, or 3DGS to be installed. It
 checks whether those tools are available and still writes the tutorial artifacts.
 
+After installing the project, the same CLI is available as:
+
+```bash
+pip install -e .
+ego-recon-demo --data-root "$DATA_ROOT" --output-dir outputs/sample_demo
+```
+
+If you already ran COLMAP and have a sparse text model, parse it without
+touching the raw sample data:
+
+```bash
+ego-recon-demo \
+  --parse-colmap-only \
+  --colmap-model outputs/sample_demo/colmap/sparse/0 \
+  --output-dir outputs/sample_demo
+```
+
 ## Repository Map
 
 | Path | Purpose |
@@ -91,6 +110,7 @@ make pages
 | `slam_poses_tum.txt` | camera trajectory in a common TUM-like text format |
 | `slam_point_cloud_preview.ply` | lightweight preview of the existing SLAM point cloud |
 | `colmap_commands.sh` | COLMAP feature, matching, mapping, and undistortion commands |
+| `colmap_summary.json` / `colmap_summary.svg` | optional summary of a parsed COLMAP sparse model |
 | `nerf_3dgs_templates.sh` | command templates for NeRFStudio and Gaussian Splatting |
 | `failure_analysis.md` | checklist for diagnosing egocentric reconstruction failures |
 

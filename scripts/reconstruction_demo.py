@@ -6,12 +6,10 @@ import json
 import shutil
 from pathlib import Path
 
-import cv2
-import h5py
-import numpy as np
-
 
 def as_jsonable(value):
+    import numpy as np
+
     arr = np.asarray(value)
     if arr.shape == ():
         item = arr.item()
@@ -27,6 +25,8 @@ def check_dependencies() -> dict:
 
 
 def extract_frames(video_path: Path, output_dir: Path, stride: int, max_frames: int) -> list[dict]:
+    import cv2
+
     frame_dir = output_dir / "frames"
     frame_dir.mkdir(parents=True, exist_ok=True)
     cap = cv2.VideoCapture(str(video_path))
@@ -53,6 +53,9 @@ def extract_frames(video_path: Path, output_dir: Path, stride: int, max_frames: 
 
 
 def read_slam_records(annotation: Path, max_rows: int | None = None) -> list[dict]:
+    import h5py
+    import numpy as np
+
     with h5py.File(annotation, "r") as h5:
         stop = None if max_rows is None or max_rows == 0 else max_rows
         if stop is None:
@@ -77,6 +80,8 @@ def read_slam_records(annotation: Path, max_rows: int | None = None) -> list[dic
 
 
 def export_calibration(annotation: Path, output_dir: Path) -> dict:
+    import h5py
+
     payload = {}
     with h5py.File(annotation, "r") as h5:
         cal = h5["calibration"]
@@ -88,6 +93,9 @@ def export_calibration(annotation: Path, output_dir: Path) -> dict:
 
 
 def export_slam(annotation: Path, output_dir: Path, max_rows: int = 200) -> dict:
+    import h5py
+    import numpy as np
+
     records = read_slam_records(annotation, max_rows)
     with h5py.File(annotation, "r") as h5:
         point_cloud = np.asarray(h5["slam/point_cloud"], dtype=float)
@@ -190,6 +198,89 @@ TRAIN_3DGS \\
     (output_dir / "nerf_3dgs_templates.sh").write_text(text, encoding="utf-8")
 
 
+def _data_lines(path: Path) -> list[str]:
+    if not path.exists():
+        return []
+    return [line.strip() for line in path.read_text(encoding="utf-8").splitlines() if line.strip() and not line.startswith("#")]
+
+
+def parse_colmap_model(model_dir: Path) -> dict:
+    cameras = []
+    for line in _data_lines(model_dir / "cameras.txt"):
+        parts = line.split()
+        if len(parts) >= 5:
+            cameras.append({
+                "camera_id": int(parts[0]),
+                "model": parts[1],
+                "width": int(parts[2]),
+                "height": int(parts[3]),
+                "params": [float(x) for x in parts[4:]],
+            })
+
+    images = []
+    image_lines = _data_lines(model_dir / "images.txt")
+    for idx in range(0, len(image_lines), 2):
+        parts = image_lines[idx].split()
+        if len(parts) >= 10:
+            images.append({
+                "image_id": int(parts[0]),
+                "qvec_wxyz": [float(x) for x in parts[1:5]],
+                "tvec_xyz": [float(x) for x in parts[5:8]],
+                "camera_id": int(parts[8]),
+                "name": parts[9],
+            })
+
+    points = []
+    errors = []
+    for line in _data_lines(model_dir / "points3D.txt"):
+        parts = line.split()
+        if len(parts) >= 8:
+            xyz = [float(x) for x in parts[1:4]]
+            points.append(xyz)
+            errors.append(float(parts[7]))
+
+    bbox = {
+        "min_xyz": [round(min(point[i] for point in points), 6) for i in range(3)] if points else None,
+        "max_xyz": [round(max(point[i] for point in points), 6) for i in range(3)] if points else None,
+    }
+    return {
+        "model_dir": str(model_dir),
+        "num_cameras": len(cameras),
+        "num_registered_images": len(images),
+        "num_sparse_points": len(points),
+        "camera_models": sorted({row["model"] for row in cameras}),
+        "registered_images": [row["name"] for row in images[:20]],
+        "mean_reprojection_error": round(sum(errors) / len(errors), 6) if errors else None,
+        "point_bbox": bbox,
+    }
+
+
+def write_colmap_summary(output_dir: Path, summary: dict) -> None:
+    (output_dir / "colmap_summary.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")
+    width, height = 720, 320
+    bars = [
+        ("cameras", summary["num_cameras"], "#38bdf8"),
+        ("images", summary["num_registered_images"], "#a78bfa"),
+        ("points", summary["num_sparse_points"], "#34d399"),
+    ]
+    max_value = max([value for _, value, _ in bars] + [1])
+    parts = [
+        f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {height}" role="img" aria-label="COLMAP sparse model summary">',
+        '<rect width="720" height="320" rx="24" fill="#0b1220"/>',
+        '<text x="32" y="48" fill="#edf2fb" font-family="Inter,Arial,sans-serif" font-size="24" font-weight="800">COLMAP Sparse Model Summary</text>',
+    ]
+    for i, (label, value, color) in enumerate(bars):
+        y = 92 + i * 64
+        bar_width = int(520 * value / max_value)
+        parts.append(f'<text x="32" y="{y + 22}" fill="#aab6ca" font-family="Inter,Arial,sans-serif" font-size="16">{label}</text>')
+        parts.append(f'<rect x="150" y="{y}" width="{max(bar_width, 4)}" height="32" rx="10" fill="{color}"/>')
+        parts.append(f'<text x="{164 + max(bar_width, 4)}" y="{y + 22}" fill="#edf2fb" font-family="Inter,Arial,sans-serif" font-size="16">{value}</text>')
+    error = summary["mean_reprojection_error"]
+    parts.append(f'<text x="32" y="292" fill="#aab6ca" font-family="Inter,Arial,sans-serif" font-size="15">mean reprojection error: {error if error is not None else "n/a"}</text>')
+    parts.append("</svg>")
+    (output_dir / "colmap_summary.svg").write_text("\n".join(parts), encoding="utf-8")
+
+
 def write_failure_analysis(output_dir: Path, frames: list[dict], deps: dict, slam: dict) -> None:
     text = f"""# Failure Case Analysis
 
@@ -233,12 +324,21 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--max-frames", type=int, default=24)
     parser.add_argument("--camera-name", default="cam0")
     parser.add_argument("--max-slam-poses", type=int, default=200)
+    parser.add_argument("--colmap-model", type=Path, help="Optional COLMAP sparse text model directory containing cameras.txt, images.txt, and points3D.txt.")
+    parser.add_argument("--parse-colmap-only", action="store_true", help="Only parse --colmap-model and write colmap_summary artifacts.")
     return parser.parse_args()
 
 
 def main() -> int:
     args = parse_args()
     args.output_dir.mkdir(parents=True, exist_ok=True)
+    if args.parse_colmap_only:
+        if not args.colmap_model:
+            raise SystemExit("--parse-colmap-only requires --colmap-model")
+        summary = parse_colmap_model(args.colmap_model)
+        write_colmap_summary(args.output_dir, summary)
+        print(f"colmap_images={summary['num_registered_images']} sparse_points={summary['num_sparse_points']}")
+        return 0
     annotation = args.data_root / "annotation.hdf5"
     deps = check_dependencies()
     frames = extract_frames(args.data_root / args.video, args.output_dir, args.frame_stride, args.max_frames)
@@ -250,6 +350,9 @@ def main() -> int:
     write_colmap_commands(args.output_dir)
     write_nerf_3dgs_templates(args.output_dir)
     write_failure_analysis(args.output_dir, frames, deps, slam)
+    colmap_summary = parse_colmap_model(args.colmap_model) if args.colmap_model else None
+    if colmap_summary:
+        write_colmap_summary(args.output_dir, colmap_summary)
     (args.output_dir / "dependency_check.json").write_text(json.dumps(deps, indent=2), encoding="utf-8")
     (args.output_dir / "run_summary.json").write_text(json.dumps({
         "video": args.video,
@@ -258,6 +361,7 @@ def main() -> int:
         "num_manifest_rows": len(manifest),
         "frame_stride": args.frame_stride,
         "max_frames": args.max_frames,
+        "colmap_summary": "colmap_summary.json" if colmap_summary else None,
     }, indent=2), encoding="utf-8")
     print(f"extracted_frames={len(frames)} colmap_available={deps['colmap']['available']}")
     return 0

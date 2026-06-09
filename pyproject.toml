@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "egocentric-3d-reconstruction-demo"
+version = "0.1.0"
+description = "Prepare egocentric video frames, calibration, poses, and reconstruction tool artifacts."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "numpy",
+  "h5py",
+  "opencv-python-headless",
+]
+
+[project.optional-dependencies]
+test = ["pytest"]
+
+[project.scripts]
+ego-recon-demo = "reconstruction_demo:main"
+
+[tool.setuptools]
+py-modules = ["reconstruction_demo"]
+
+[tool.setuptools.package-dir]
+"" = "scripts"
