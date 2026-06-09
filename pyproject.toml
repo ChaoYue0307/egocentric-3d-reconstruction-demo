@@ -16,12 +16,21 @@ dependencies = [
 
 [project.optional-dependencies]
 test = ["pytest"]
+dev = ["pytest", "ruff"]
 
 [project.scripts]
 ego-recon-demo = "reconstruction_demo:main"
 
 [tool.setuptools]
-py-modules = ["reconstruction_demo"]
+py-modules = ["adapters", "reconstruction_demo"]
 
 [tool.setuptools.package-dir]
 "" = "scripts"
+
+[tool.ruff]
+line-length = 180
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "UP", "B"]
+ignore = ["E501"]

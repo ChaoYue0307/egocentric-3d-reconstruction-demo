@@ -87,6 +87,9 @@ ego-recon-demo \
 | Path | Purpose |
 | --- | --- |
 | `scripts/reconstruction_demo.py` | frame extraction, calibration export, SLAM export, and command generation |
+| `scripts/adapters.py` | source boundary for video, calibration, and pose providers |
+| `notebooks/02_reconstruction_artifacts.ipynb` | step-by-step notebook companion |
+| `reports/reconstruction_readiness_report.md` | paper-style method, artifact, and limitation summary |
 | `docs/index.html` | interactive reconstruction tutorial webpage |
 | `docs/concepts.md` | glossary for reconstruction and neural rendering terms |
 | `outputs/sample_demo/calibration.json` | sample calibration export |

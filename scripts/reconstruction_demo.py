@@ -68,7 +68,7 @@ def read_slam_records(annotation: Path, max_rows: int | None = None) -> list[dic
             quat = np.asarray(h5["slam/quat_wxyz"][:stop], dtype=float)
         names = [np.asarray(x).tobytes().decode("utf-8", errors="replace").strip("\x00") for x in raw_names]
     records = []
-    for idx, (name, t, q) in enumerate(zip(names, trans, quat)):
+    for idx, (name, t, q) in enumerate(zip(names, trans, quat, strict=True)):
         timestamp = name.rsplit(".", 1)[0]
         records.append({
             "index": idx,

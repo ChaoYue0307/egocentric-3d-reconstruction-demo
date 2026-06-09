@@ -17,7 +17,7 @@ def render(manifest_path: Path, summary_path: Path, output_path: Path) -> None:
         scale_x = max(max_x - min_x, 1e-6)
         scale_z = max(max_z - min_z, 1e-6)
         points = []
-        for x, z in zip(xs, zs):
+        for x, z in zip(xs, zs, strict=True):
             px = 94 + (x - min_x) / scale_x * 430
             py = 232 - (z - min_z) / scale_z * 150
             points.append((px, py))

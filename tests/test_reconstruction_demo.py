@@ -8,6 +8,7 @@ import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 
+from adapters import XperienceReconstructionAdapter  # noqa: E402
 from reconstruction_demo import as_jsonable, build_frames_manifest, export_slam, parse_colmap_model, read_slam_records, write_colmap_summary  # noqa: E402
 
 
@@ -75,3 +76,10 @@ def test_parse_colmap_model_text_files(tmp_path: Path) -> None:
     write_colmap_summary(tmp_path, summary)
     assert (tmp_path / "colmap_summary.json").exists()
     assert (tmp_path / "colmap_summary.svg").exists()
+
+
+def test_xperience_reconstruction_adapter_paths(tmp_path: Path) -> None:
+    adapter = XperienceReconstructionAdapter(tmp_path)
+    assert adapter.annotation_path == tmp_path / "annotation.hdf5"
+    assert adapter.video_path == tmp_path / "fisheye_cam0.mp4"
+    assert "slam_poses" in adapter.describe()["signals"]
