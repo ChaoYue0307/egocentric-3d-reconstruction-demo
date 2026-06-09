@@ -16,7 +16,7 @@ Open the visual walkthrough:
 - Local copy: open `docs/index.html` in a browser.
 
 The page includes a stage-by-stage pipeline, a camera-path visual, command map,
-and failure-mode checklist. A glossary lives in `docs/concepts.md`.
+interactive concept explanations, and failure-mode checklist.
 
 ## What You Will Learn
 
