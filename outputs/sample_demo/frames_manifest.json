@@ -33,8 +33,8 @@
     "pose_source": "slam/frame_names + slam/trans_xyz + slam/quat_wxyz"
   },
   {
-    "image": "frames/frame_00001_src_000300.jpg",
-    "source_frame": 300,
+    "image": "frames/frame_00001_src_000180.jpg",
+    "source_frame": 180,
     "camera": "cam0",
     "camera_intrinsics": [
       395.00109559502636,
@@ -49,25 +49,25 @@
       0.0017843379743501806
     ],
     "nearest_slam_pose": {
-      "index": 300,
-      "timestamp": "72872804785498",
+      "index": 180,
+      "timestamp": "72866806178203",
       "position_xyz": [
-        -0.077582,
-        -0.103201,
-        0.222172
+        -0.440446,
+        -0.003584,
+        -0.100836
       ],
       "quaternion_wxyz": [
-        -0.104375,
-        -0.260707,
-        0.800649,
-        -0.529244
+        0.176439,
+        0.189426,
+        0.697706,
+        -0.667977
       ]
     },
     "pose_source": "slam/frame_names + slam/trans_xyz + slam/quat_wxyz"
   },
   {
-    "image": "frames/frame_00002_src_000600.jpg",
-    "source_frame": 600,
+    "image": "frames/frame_00002_src_000360.jpg",
+    "source_frame": 360,
     "camera": "cam0",
     "camera_intrinsics": [
       395.00109559502636,
@@ -82,24 +82,90 @@
       0.0017843379743501806
     ],
     "nearest_slam_pose": {
-      "index": 600,
-      "timestamp": "72887804785797",
+      "index": 360,
+      "timestamp": "72875807554333",
       "position_xyz": [
-        -0.036934,
-        -0.087009,
-        -0.091203
+        -0.084954,
+        -0.102707,
+        0.219571
       ],
       "quaternion_wxyz": [
-        -0.057837,
-        -0.332546,
-        0.867334,
-        -0.365787
+        -0.099328,
+        -0.251474,
+        0.803759,
+        -0.529969
       ]
     },
     "pose_source": "slam/frame_names + slam/trans_xyz + slam/quat_wxyz"
   },
   {
-    "image": "frames/frame_00003_src_000900.jpg",
+    "image": "frames/frame_00003_src_000540.jpg",
+    "source_frame": 540,
+    "camera": "cam0",
+    "camera_intrinsics": [
+      395.00109559502636,
+      394.7747916429034,
+      536.1617651628547,
+      673.6553587142616
+    ],
+    "camera_distortion": [
+      -0.05761959903731187,
+      0.0029356256212510054,
+      -0.006634361165985679,
+      0.0017843379743501806
+    ],
+    "nearest_slam_pose": {
+      "index": 540,
+      "timestamp": "72884804786253",
+      "position_xyz": [
+        -0.096,
+        -0.11267,
+        0.27178
+      ],
+      "quaternion_wxyz": [
+        -0.127112,
+        -0.285369,
+        0.784059,
+        -0.536338
+      ]
+    },
+    "pose_source": "slam/frame_names + slam/trans_xyz + slam/quat_wxyz"
+  },
+  {
+    "image": "frames/frame_00004_src_000720.jpg",
+    "source_frame": 720,
+    "camera": "cam0",
+    "camera_intrinsics": [
+      395.00109559502636,
+      394.7747916429034,
+      536.1617651628547,
+      673.6553587142616
+    ],
+    "camera_distortion": [
+      -0.05761959903731187,
+      0.0029356256212510054,
+      -0.006634361165985679,
+      0.0017843379743501806
+    ],
+    "nearest_slam_pose": {
+      "index": 720,
+      "timestamp": "72893804785424",
+      "position_xyz": [
+        -0.100369,
+        -0.049978,
+        0.084585
+      ],
+      "quaternion_wxyz": [
+        -0.127525,
+        -0.20765,
+        0.823238,
+        -0.512736
+      ]
+    },
+    "pose_source": "slam/frame_names + slam/trans_xyz + slam/quat_wxyz"
+  },
+  {
+    "image": "frames/frame_00005_src_000900.jpg",
     "source_frame": 900,
     "camera": "cam0",
     "camera_intrinsics": [
@@ -132,8 +198,8 @@
     "pose_source": "slam/frame_names + slam/trans_xyz + slam/quat_wxyz"
   },
   {
-    "image": "frames/frame_00004_src_001200.jpg",
-    "source_frame": 1200,
+    "image": "frames/frame_00006_src_001080.jpg",
+    "source_frame": 1080,
     "camera": "cam0",
     "camera_intrinsics": [
       395.00109559502636,
@@ -148,25 +214,25 @@
       0.0017843379743501806
     ],
     "nearest_slam_pose": {
-      "index": 1200,
-      "timestamp": "72917807015228",
+      "index": 1080,
+      "timestamp": "72911804785683",
       "position_xyz": [
-        -0.115656,
-        -0.055665,
-        0.109354
+        -0.166561,
+        0.008953,
+        -0.099098
       ],
       "quaternion_wxyz": [
-        -0.116664,
-        -0.226386,
-        0.81623,
-        -0.518563
+        -0.122317,
+        -0.153861,
+        0.892535,
+        -0.405891
       ]
     },
     "pose_source": "slam/frame_names + slam/trans_xyz + slam/quat_wxyz"
   },
   {
-    "image": "frames/frame_00005_src_001500.jpg",
-    "source_frame": 1500,
+    "image": "frames/frame_00007_src_001260.jpg",
+    "source_frame": 1260,
     "camera": "cam0",
     "camera_intrinsics": [
       395.00109559502636,
@@ -181,24 +247,90 @@
       0.0017843379743501806
     ],
     "nearest_slam_pose": {
-      "index": 1500,
-      "timestamp": "72932806535193",
+      "index": 1260,
+      "timestamp": "72920804785229",
       "position_xyz": [
-        -0.123519,
-        -0.030804,
-        0.00575
+        -0.127845,
+        -0.070292,
+        0.136267
       ],
       "quaternion_wxyz": [
-        -0.127654,
-        -0.227687,
-        0.849521,
-        -0.45845
+        -0.093411,
+        -0.20972,
+        0.827478,
+        -0.512418
       ]
     },
     "pose_source": "slam/frame_names + slam/trans_xyz + slam/quat_wxyz"
   },
   {
-    "image": "frames/frame_00006_src_001800.jpg",
+    "image": "frames/frame_00008_src_001440.jpg",
+    "source_frame": 1440,
+    "camera": "cam0",
+    "camera_intrinsics": [
+      395.00109559502636,
+      394.7747916429034,
+      536.1617651628547,
+      673.6553587142616
+    ],
+    "camera_distortion": [
+      -0.05761959903731187,
+      0.0029356256212510054,
+      -0.006634361165985679,
+      0.0017843379743501806
+    ],
+    "nearest_slam_pose": {
+      "index": 1440,
+      "timestamp": "72929806843608",
+      "position_xyz": [
+        -0.141493,
+        -0.015746,
+        -0.055059
+      ],
+      "quaternion_wxyz": [
+        -0.116264,
+        -0.205355,
+        0.863794,
+        -0.445165
+      ]
+    },
+    "pose_source": "slam/frame_names + slam/trans_xyz + slam/quat_wxyz"
+  },
+  {
+    "image": "frames/frame_00009_src_001620.jpg",
+    "source_frame": 1620,
+    "camera": "cam0",
+    "camera_intrinsics": [
+      395.00109559502636,
+      394.7747916429034,
+      536.1617651628547,
+      673.6553587142616
+    ],
+    "camera_distortion": [
+      -0.05761959903731187,
+      0.0029356256212510054,
+      -0.006634361165985679,
+      0.0017843379743501806
+    ],
+    "nearest_slam_pose": {
+      "index": 1620,
+      "timestamp": "72938804787446",
+      "position_xyz": [
+        -0.127379,
+        -0.034393,
+        0.018885
+      ],
+      "quaternion_wxyz": [
+        -0.12391,
+        -0.213471,
+        0.84517,
+        -0.474093
+      ]
+    },
+    "pose_source": "slam/frame_names + slam/trans_xyz + slam/quat_wxyz"
+  },
+  {
+    "image": "frames/frame_00010_src_001800.jpg",
     "source_frame": 1800,
     "camera": "cam0",
     "camera_intrinsics": [
@@ -231,8 +363,8 @@
     "pose_source": "slam/frame_names + slam/trans_xyz + slam/quat_wxyz"
   },
   {
-    "image": "frames/frame_00007_src_002100.jpg",
-    "source_frame": 2100,
+    "image": "frames/frame_00011_src_001980.jpg",
+    "source_frame": 1980,
     "camera": "cam0",
     "camera_intrinsics": [
       395.00109559502636,
@@ -247,18 +379,414 @@
       0.0017843379743501806
     ],
     "nearest_slam_pose": {
-      "index": 2100,
-      "timestamp": "72962804786082",
+      "index": 1980,
+      "timestamp": "72956807609746",
       "position_xyz": [
-        -0.097799,
-        -0.038912,
-        0.020084
+        -0.161091,
+        -0.033211,
+        0.012431
       ],
       "quaternion_wxyz": [
-        -0.112574,
-        -0.231402,
-        0.847732,
-        -0.463822
+        -0.134005,
+        -0.189373,
+        0.865169,
+        -0.444593
+      ]
+    },
+    "pose_source": "slam/frame_names + slam/trans_xyz + slam/quat_wxyz"
+  },
+  {
+    "image": "frames/frame_00012_src_002160.jpg",
+    "source_frame": 2160,
+    "camera": "cam0",
+    "camera_intrinsics": [
+      395.00109559502636,
+      394.7747916429034,
+      536.1617651628547,
+      673.6553587142616
+    ],
+    "camera_distortion": [
+      -0.05761959903731187,
+      0.0029356256212510054,
+      -0.006634361165985679,
+      0.0017843379743501806
+    ],
+    "nearest_slam_pose": {
+      "index": 2160,
+      "timestamp": "72965804784542",
+      "position_xyz": [
+        -0.099832,
+        -0.038343,
+        0.014575
+      ],
+      "quaternion_wxyz": [
+        -0.107253,
+        -0.227991,
+        0.851977,
+        -0.458968
+      ]
+    },
+    "pose_source": "slam/frame_names + slam/trans_xyz + slam/quat_wxyz"
+  },
+  {
+    "image": "frames/frame_00013_src_002340.jpg",
+    "source_frame": 2340,
+    "camera": "cam0",
+    "camera_intrinsics": [
+      395.00109559502636,
+      394.7747916429034,
+      536.1617651628547,
+      673.6553587142616
+    ],
+    "camera_distortion": [
+      -0.05761959903731187,
+      0.0029356256212510054,
+      -0.006634361165985679,
+      0.0017843379743501806
+    ],
+    "nearest_slam_pose": {
+      "index": 2340,
+      "timestamp": "72974804785421",
+      "position_xyz": [
+        -0.154718,
+        -0.001299,
+        0.331477
+      ],
+      "quaternion_wxyz": [
+        0.113119,
+        0.118902,
+        -0.696387,
+        0.698649
+      ]
+    },
+    "pose_source": "slam/frame_names + slam/trans_xyz + slam/quat_wxyz"
+  },
+  {
+    "image": "frames/frame_00014_src_002520.jpg",
+    "source_frame": 2520,
+    "camera": "cam0",
+    "camera_intrinsics": [
+      395.00109559502636,
+      394.7747916429034,
+      536.1617651628547,
+      673.6553587142616
+    ],
+    "camera_distortion": [
+      -0.05761959903731187,
+      0.0029356256212510054,
+      -0.006634361165985679,
+      0.0017843379743501806
+    ],
+    "nearest_slam_pose": {
+      "index": 2520,
+      "timestamp": "72983805363759",
+      "position_xyz": [
+        -0.158914,
+        -0.051048,
+        0.145071
+      ],
+      "quaternion_wxyz": [
+        -0.137955,
+        -0.160618,
+        0.810918,
+        -0.545511
+      ]
+    },
+    "pose_source": "slam/frame_names + slam/trans_xyz + slam/quat_wxyz"
+  },
+  {
+    "image": "frames/frame_00015_src_002700.jpg",
+    "source_frame": 2700,
+    "camera": "cam0",
+    "camera_intrinsics": [
+      395.00109559502636,
+      394.7747916429034,
+      536.1617651628547,
+      673.6553587142616
+    ],
+    "camera_distortion": [
+      -0.05761959903731187,
+      0.0029356256212510054,
+      -0.006634361165985679,
+      0.0017843379743501806
+    ],
+    "nearest_slam_pose": {
+      "index": 2700,
+      "timestamp": "72992804785972",
+      "position_xyz": [
+        -0.056755,
+        -0.066188,
+        0.290903
+      ],
+      "quaternion_wxyz": [
+        -0.110789,
+        -0.145389,
+        0.770531,
+        -0.610631
+      ]
+    },
+    "pose_source": "slam/frame_names + slam/trans_xyz + slam/quat_wxyz"
+  },
+  {
+    "image": "frames/frame_00016_src_002880.jpg",
+    "source_frame": 2880,
+    "camera": "cam0",
+    "camera_intrinsics": [
+      395.00109559502636,
+      394.7747916429034,
+      536.1617651628547,
+      673.6553587142616
+    ],
+    "camera_distortion": [
+      -0.05761959903731187,
+      0.0029356256212510054,
+      -0.006634361165985679,
+      0.0017843379743501806
+    ],
+    "nearest_slam_pose": {
+      "index": 2880,
+      "timestamp": "73001806615226",
+      "position_xyz": [
+        -0.089477,
+        -0.072403,
+        0.222199
+      ],
+      "quaternion_wxyz": [
+        -0.127803,
+        -0.154456,
+        0.8082,
+        -0.553735
+      ]
+    },
+    "pose_source": "slam/frame_names + slam/trans_xyz + slam/quat_wxyz"
+  },
+  {
+    "image": "frames/frame_00017_src_003060.jpg",
+    "source_frame": 3060,
+    "camera": "cam0",
+    "camera_intrinsics": [
+      395.00109559502636,
+      394.7747916429034,
+      536.1617651628547,
+      673.6553587142616
+    ],
+    "camera_distortion": [
+      -0.05761959903731187,
+      0.0029356256212510054,
+      -0.006634361165985679,
+      0.0017843379743501806
+    ],
+    "nearest_slam_pose": {
+      "index": 3060,
+      "timestamp": "73010804829647",
+      "position_xyz": [
+        -0.09661,
+        -0.044685,
+        0.082852
+      ],
+      "quaternion_wxyz": [
+        -0.128723,
+        -0.214659,
+        0.825768,
+        -0.505429
+      ]
+    },
+    "pose_source": "slam/frame_names + slam/trans_xyz + slam/quat_wxyz"
+  },
+  {
+    "image": "frames/frame_00018_src_003240.jpg",
+    "source_frame": 3240,
+    "camera": "cam0",
+    "camera_intrinsics": [
+      395.00109559502636,
+      394.7747916429034,
+      536.1617651628547,
+      673.6553587142616
+    ],
+    "camera_distortion": [
+      -0.05761959903731187,
+      0.0029356256212510054,
+      -0.006634361165985679,
+      0.0017843379743501806
+    ],
+    "nearest_slam_pose": {
+      "index": 3240,
+      "timestamp": "73019804785110",
+      "position_xyz": [
+        -0.094136,
+        -0.058591,
+        0.114076
+      ],
+      "quaternion_wxyz": [
+        -0.105455,
+        -0.197648,
+        0.825185,
+        -0.51854
+      ]
+    },
+    "pose_source": "slam/frame_names + slam/trans_xyz + slam/quat_wxyz"
+  },
+  {
+    "image": "frames/frame_00019_src_003420.jpg",
+    "source_frame": 3420,
+    "camera": "cam0",
+    "camera_intrinsics": [
+      395.00109559502636,
+      394.7747916429034,
+      536.1617651628547,
+      673.6553587142616
+    ],
+    "camera_distortion": [
+      -0.05761959903731187,
+      0.0029356256212510054,
+      -0.006634361165985679,
+      0.0017843379743501806
+    ],
+    "nearest_slam_pose": {
+      "index": 3420,
+      "timestamp": "73028804784530",
+      "position_xyz": [
+        -0.087135,
+        -0.059071,
+        0.109478
+      ],
+      "quaternion_wxyz": [
+        -0.109666,
+        -0.216033,
+        0.820319,
+        -0.518054
+      ]
+    },
+    "pose_source": "slam/frame_names + slam/trans_xyz + slam/quat_wxyz"
+  },
+  {
+    "image": "frames/frame_00020_src_003600.jpg",
+    "source_frame": 3600,
+    "camera": "cam0",
+    "camera_intrinsics": [
+      395.00109559502636,
+      394.7747916429034,
+      536.1617651628547,
+      673.6553587142616
+    ],
+    "camera_distortion": [
+      -0.05761959903731187,
+      0.0029356256212510054,
+      -0.006634361165985679,
+      0.0017843379743501806
+    ],
+    "nearest_slam_pose": {
+      "index": 3600,
+      "timestamp": "73037804785326",
+      "position_xyz": [
+        -0.017642,
+        -0.05668,
+        0.100871
+      ],
+      "quaternion_wxyz": [
+        -0.177334,
+        -0.263072,
+        0.810858,
+        -0.491788
+      ]
+    },
+    "pose_source": "slam/frame_names + slam/trans_xyz + slam/quat_wxyz"
+  },
+  {
+    "image": "frames/frame_00021_src_003780.jpg",
+    "source_frame": 3780,
+    "camera": "cam0",
+    "camera_intrinsics": [
+      395.00109559502636,
+      394.7747916429034,
+      536.1617651628547,
+      673.6553587142616
+    ],
+    "camera_distortion": [
+      -0.05761959903731187,
+      0.0029356256212510054,
+      -0.006634361165985679,
+      0.0017843379743501806
+    ],
+    "nearest_slam_pose": {
+      "index": 3780,
+      "timestamp": "73046804784956",
+      "position_xyz": [
+        -0.132037,
+        -0.077088,
+        0.0898
+      ],
+      "quaternion_wxyz": [
+        -0.082005,
+        -0.186944,
+        0.855961,
+        -0.475034
+      ]
+    },
+    "pose_source": "slam/frame_names + slam/trans_xyz + slam/quat_wxyz"
+  },
+  {
+    "image": "frames/frame_00022_src_003960.jpg",
+    "source_frame": 3960,
+    "camera": "cam0",
+    "camera_intrinsics": [
+      395.00109559502636,
+      394.7747916429034,
+      536.1617651628547,
+      673.6553587142616
+    ],
+    "camera_distortion": [
+      -0.05761959903731187,
+      0.0029356256212510054,
+      -0.006634361165985679,
+      0.0017843379743501806
+    ],
+    "nearest_slam_pose": {
+      "index": 3960,
+      "timestamp": "73055804786085",
+      "position_xyz": [
+        0.072948,
+        -0.078292,
+        0.180296
+      ],
+      "quaternion_wxyz": [
+        -0.168652,
+        -0.375747,
+        0.763878,
+        -0.49685
+      ]
+    },
+    "pose_source": "slam/frame_names + slam/trans_xyz + slam/quat_wxyz"
+  },
+  {
+    "image": "frames/frame_00023_src_004140.jpg",
+    "source_frame": 4140,
+    "camera": "cam0",
+    "camera_intrinsics": [
+      395.00109559502636,
+      394.7747916429034,
+      536.1617651628547,
+      673.6553587142616
+    ],
+    "camera_distortion": [
+      -0.05761959903731187,
+      0.0029356256212510054,
+      -0.006634361165985679,
+      0.0017843379743501806
+    ],
+    "nearest_slam_pose": {
+      "index": 4140,
+      "timestamp": "73064804785714",
+      "position_xyz": [
+        -0.140759,
+        -0.077707,
+        0.167635
+      ],
+      "quaternion_wxyz": [
+        -0.118372,
+        -0.126583,
+        0.849379,
+        -0.498519
       ]
     },
     "pose_source": "slam/frame_names + slam/trans_xyz + slam/quat_wxyz"

@@ -5,7 +5,7 @@ sample episode.
 
 ## Smoke-Test Context
 
-- Extracted frames: 8
+- Extracted frames: 24
 - Exported SLAM poses: 200
 - SLAM point cloud points: 4089
 - COLMAP installed: False

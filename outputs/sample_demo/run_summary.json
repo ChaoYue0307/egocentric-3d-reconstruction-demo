@@ -1,8 +1,9 @@
 {
   "video": "fisheye_cam0.mp4",
   "camera_name": "cam0",
-  "num_extracted_frames": 8,
-  "num_manifest_rows": 8,
-  "frame_stride": 300,
-  "max_frames": 8
+  "num_extracted_frames": 24,
+  "num_manifest_rows": 24,
+  "frame_stride": 180,
+  "max_frames": 24,
+  "colmap_summary": null
 }

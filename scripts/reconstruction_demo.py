@@ -22,7 +22,7 @@ def as_jsonable(value):
 
 
 def check_dependencies() -> dict:
-    names = ["colmap", "ns-process-data", "ns-train", "instant-ngp", "python"]
+    names = ["colmap", "ns-process-data", "ns-train", "instant-ngp", "python3"]
     return {name: {"available": shutil.which(name) is not None, "path": shutil.which(name)} for name in names}
 
 

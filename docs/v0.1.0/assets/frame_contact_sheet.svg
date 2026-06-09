@@ -7,32 +7,48 @@
   <text x="62" y="120" fill="#9fb0c9" font-family="Inter,Arial" font-size="12">src 0 · pose 72857807732824</text>
 
   <rect x="216" y="76" width="148" height="58" rx="14" fill="#07101e" stroke="#263b5f"/>
-  <text x="230" y="99" fill="#e5edf8" font-family="Inter,Arial" font-size="13">frames/frame_00001_src_000300.jpg</text>
-  <text x="230" y="120" fill="#9fb0c9" font-family="Inter,Arial" font-size="12">src 300 · pose 72872804785498</text>
+  <text x="230" y="99" fill="#e5edf8" font-family="Inter,Arial" font-size="13">frames/frame_00001_src_000180.jpg</text>
+  <text x="230" y="120" fill="#9fb0c9" font-family="Inter,Arial" font-size="12">src 180 · pose 72866806178203</text>
 
   <rect x="384" y="76" width="148" height="58" rx="14" fill="#07101e" stroke="#263b5f"/>
-  <text x="398" y="99" fill="#e5edf8" font-family="Inter,Arial" font-size="13">frames/frame_00002_src_000600.jpg</text>
-  <text x="398" y="120" fill="#9fb0c9" font-family="Inter,Arial" font-size="12">src 600 · pose 72887804785797</text>
+  <text x="398" y="99" fill="#e5edf8" font-family="Inter,Arial" font-size="13">frames/frame_00002_src_000360.jpg</text>
+  <text x="398" y="120" fill="#9fb0c9" font-family="Inter,Arial" font-size="12">src 360 · pose 72875807554333</text>
 
   <rect x="552" y="76" width="148" height="58" rx="14" fill="#07101e" stroke="#263b5f"/>
-  <text x="566" y="99" fill="#e5edf8" font-family="Inter,Arial" font-size="13">frames/frame_00003_src_000900.jpg</text>
-  <text x="566" y="120" fill="#9fb0c9" font-family="Inter,Arial" font-size="12">src 900 · pose 72902804785470</text>
+  <text x="566" y="99" fill="#e5edf8" font-family="Inter,Arial" font-size="13">frames/frame_00003_src_000540.jpg</text>
+  <text x="566" y="120" fill="#9fb0c9" font-family="Inter,Arial" font-size="12">src 540 · pose 72884804786253</text>
 
   <rect x="48" y="154" width="148" height="58" rx="14" fill="#07101e" stroke="#263b5f"/>
-  <text x="62" y="177" fill="#e5edf8" font-family="Inter,Arial" font-size="13">frames/frame_00004_src_001200.jpg</text>
-  <text x="62" y="198" fill="#9fb0c9" font-family="Inter,Arial" font-size="12">src 1200 · pose 72917807015228</text>
+  <text x="62" y="177" fill="#e5edf8" font-family="Inter,Arial" font-size="13">frames/frame_00004_src_000720.jpg</text>
+  <text x="62" y="198" fill="#9fb0c9" font-family="Inter,Arial" font-size="12">src 720 · pose 72893804785424</text>
 
   <rect x="216" y="154" width="148" height="58" rx="14" fill="#07101e" stroke="#263b5f"/>
-  <text x="230" y="177" fill="#e5edf8" font-family="Inter,Arial" font-size="13">frames/frame_00005_src_001500.jpg</text>
-  <text x="230" y="198" fill="#9fb0c9" font-family="Inter,Arial" font-size="12">src 1500 · pose 72932806535193</text>
+  <text x="230" y="177" fill="#e5edf8" font-family="Inter,Arial" font-size="13">frames/frame_00005_src_000900.jpg</text>
+  <text x="230" y="198" fill="#9fb0c9" font-family="Inter,Arial" font-size="12">src 900 · pose 72902804785470</text>
 
   <rect x="384" y="154" width="148" height="58" rx="14" fill="#07101e" stroke="#263b5f"/>
-  <text x="398" y="177" fill="#e5edf8" font-family="Inter,Arial" font-size="13">frames/frame_00006_src_001800.jpg</text>
-  <text x="398" y="198" fill="#9fb0c9" font-family="Inter,Arial" font-size="12">src 1800 · pose 72947804785867</text>
+  <text x="398" y="177" fill="#e5edf8" font-family="Inter,Arial" font-size="13">frames/frame_00006_src_001080.jpg</text>
+  <text x="398" y="198" fill="#9fb0c9" font-family="Inter,Arial" font-size="12">src 1080 · pose 72911804785683</text>
 
   <rect x="552" y="154" width="148" height="58" rx="14" fill="#07101e" stroke="#263b5f"/>
-  <text x="566" y="177" fill="#e5edf8" font-family="Inter,Arial" font-size="13">frames/frame_00007_src_002100.jpg</text>
-  <text x="566" y="198" fill="#9fb0c9" font-family="Inter,Arial" font-size="12">src 2100 · pose 72962804786082</text>
+  <text x="566" y="177" fill="#e5edf8" font-family="Inter,Arial" font-size="13">frames/frame_00007_src_001260.jpg</text>
+  <text x="566" y="198" fill="#9fb0c9" font-family="Inter,Arial" font-size="12">src 1260 · pose 72920804785229</text>
+
+  <rect x="48" y="232" width="148" height="58" rx="14" fill="#07101e" stroke="#263b5f"/>
+  <text x="62" y="255" fill="#e5edf8" font-family="Inter,Arial" font-size="13">frames/frame_00008_src_001440.jpg</text>
+  <text x="62" y="276" fill="#9fb0c9" font-family="Inter,Arial" font-size="12">src 1440 · pose 72929806843608</text>
+
+  <rect x="216" y="232" width="148" height="58" rx="14" fill="#07101e" stroke="#263b5f"/>
+  <text x="230" y="255" fill="#e5edf8" font-family="Inter,Arial" font-size="13">frames/frame_00009_src_001620.jpg</text>
+  <text x="230" y="276" fill="#9fb0c9" font-family="Inter,Arial" font-size="12">src 1620 · pose 72938804787446</text>
+
+  <rect x="384" y="232" width="148" height="58" rx="14" fill="#07101e" stroke="#263b5f"/>
+  <text x="398" y="255" fill="#e5edf8" font-family="Inter,Arial" font-size="13">frames/frame_00010_src_001800.jpg</text>
+  <text x="398" y="276" fill="#9fb0c9" font-family="Inter,Arial" font-size="12">src 1800 · pose 72947804785867</text>
+
+  <rect x="552" y="232" width="148" height="58" rx="14" fill="#07101e" stroke="#263b5f"/>
+  <text x="566" y="255" fill="#e5edf8" font-family="Inter,Arial" font-size="13">frames/frame_00011_src_001980.jpg</text>
+  <text x="566" y="276" fill="#9fb0c9" font-family="Inter,Arial" font-size="12">src 1980 · pose 72956807609746</text>
 
   <text x="48" y="326" fill="#64748b" font-size="13" font-family="Inter, Arial">Each card links an extracted image to the nearest SLAM pose timestamp.</text>
 </svg>

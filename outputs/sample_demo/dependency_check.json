@@ -15,8 +15,8 @@
     "available": false,
     "path": null
   },
-  "python": {
-    "available": false,
-    "path": null
+  "python3": {
+    "available": true,
+    "path": "/opt/homebrew/bin/python3"
   }
 }

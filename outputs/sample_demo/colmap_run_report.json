@@ -1,0 +1,7 @@
+{
+  "colmap_available": false,
+  "colmap_path": null,
+  "commands": "outputs/sample_demo/colmap_commands.sh",
+  "executed": false,
+  "exit_code": null
+}

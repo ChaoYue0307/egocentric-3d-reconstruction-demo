@@ -1,6 +1,6 @@
 PYTHON ?= python3
 
-.PHONY: test help visuals pages
+.PHONY: test help visuals colmap-check pages
 
 test:
 	$(PYTHON) -m pytest -q
@@ -10,6 +10,9 @@ help:
 
 visuals:
 	$(PYTHON) scripts/render_reconstruction_visuals.py
+
+colmap-check:
+	$(PYTHON) scripts/run_colmap_if_available.py
 
 pages:
 	@echo "https://chaoyue0307.github.io/egocentric-3d-reconstruction-demo/"

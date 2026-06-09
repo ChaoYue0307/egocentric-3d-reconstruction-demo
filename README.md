@@ -15,6 +15,7 @@ failure cases for egocentric footage.
 
 ![Egocentric 3D reconstruction tutorial preview](docs/assets/readme_preview.svg)
 ![Animated reconstruction demo loop](docs/assets/demo_loop.svg)
+![Live tutorial screenshot](docs/assets/live_screenshot.png)
 
 ## Interactive Tutorial
 
@@ -86,6 +87,13 @@ ego-recon-demo \
 When `frames_manifest.json` is present, the parser also writes a lightweight
 COLMAP-vs-SLAM pose comparison.
 
+To verify whether COLMAP is installed and run the generated commands when it is
+available:
+
+```bash
+python scripts/run_colmap_if_available.py --run
+```
+
 ## Repository Map
 
 | Path | Purpose |
@@ -120,6 +128,7 @@ make pages
 | `colmap_commands.sh` | COLMAP feature, matching, mapping, and undistortion commands |
 | `colmap_summary.json` / `colmap_summary.svg` | optional summary of a parsed COLMAP sparse model |
 | `colmap_vs_slam.json` / `colmap_vs_slam.svg` | optional trajectory comparison against nearest SLAM poses |
+| `colmap_run_report.json` / `colmap_run_report.md` | local COLMAP availability and execution report |
 | `nerf_3dgs_templates.sh` | command templates for NeRFStudio and Gaussian Splatting |
 | `failure_analysis.md` | checklist for diagnosing egocentric reconstruction failures |
 
