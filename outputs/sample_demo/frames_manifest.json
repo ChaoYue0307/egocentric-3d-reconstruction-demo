@@ -1,0 +1,266 @@
+[
+  {
+    "image": "frames/frame_00000_src_000000.jpg",
+    "source_frame": 0,
+    "camera": "cam0",
+    "camera_intrinsics": [
+      395.00109559502636,
+      394.7747916429034,
+      536.1617651628547,
+      673.6553587142616
+    ],
+    "camera_distortion": [
+      -0.05761959903731187,
+      0.0029356256212510054,
+      -0.006634361165985679,
+      0.0017843379743501806
+    ],
+    "nearest_slam_pose": {
+      "index": 0,
+      "timestamp": "72857807732824",
+      "position_xyz": [
+        -0.124226,
+        -0.071547,
+        0.167756
+      ],
+      "quaternion_wxyz": [
+        -0.129103,
+        -0.181632,
+        0.824922,
+        -0.519467
+      ]
+    },
+    "pose_source": "slam/frame_names + slam/trans_xyz + slam/quat_wxyz"
+  },
+  {
+    "image": "frames/frame_00001_src_000300.jpg",
+    "source_frame": 300,
+    "camera": "cam0",
+    "camera_intrinsics": [
+      395.00109559502636,
+      394.7747916429034,
+      536.1617651628547,
+      673.6553587142616
+    ],
+    "camera_distortion": [
+      -0.05761959903731187,
+      0.0029356256212510054,
+      -0.006634361165985679,
+      0.0017843379743501806
+    ],
+    "nearest_slam_pose": {
+      "index": 300,
+      "timestamp": "72872804785498",
+      "position_xyz": [
+        -0.077582,
+        -0.103201,
+        0.222172
+      ],
+      "quaternion_wxyz": [
+        -0.104375,
+        -0.260707,
+        0.800649,
+        -0.529244
+      ]
+    },
+    "pose_source": "slam/frame_names + slam/trans_xyz + slam/quat_wxyz"
+  },
+  {
+    "image": "frames/frame_00002_src_000600.jpg",
+    "source_frame": 600,
+    "camera": "cam0",
+    "camera_intrinsics": [
+      395.00109559502636,
+      394.7747916429034,
+      536.1617651628547,
+      673.6553587142616
+    ],
+    "camera_distortion": [
+      -0.05761959903731187,
+      0.0029356256212510054,
+      -0.006634361165985679,
+      0.0017843379743501806
+    ],
+    "nearest_slam_pose": {
+      "index": 600,
+      "timestamp": "72887804785797",
+      "position_xyz": [
+        -0.036934,
+        -0.087009,
+        -0.091203
+      ],
+      "quaternion_wxyz": [
+        -0.057837,
+        -0.332546,
+        0.867334,
+        -0.365787
+      ]
+    },
+    "pose_source": "slam/frame_names + slam/trans_xyz + slam/quat_wxyz"
+  },
+  {
+    "image": "frames/frame_00003_src_000900.jpg",
+    "source_frame": 900,
+    "camera": "cam0",
+    "camera_intrinsics": [
+      395.00109559502636,
+      394.7747916429034,
+      536.1617651628547,
+      673.6553587142616
+    ],
+    "camera_distortion": [
+      -0.05761959903731187,
+      0.0029356256212510054,
+      -0.006634361165985679,
+      0.0017843379743501806
+    ],
+    "nearest_slam_pose": {
+      "index": 900,
+      "timestamp": "72902804785470",
+      "position_xyz": [
+        -0.180575,
+        -0.039697,
+        -0.091467
+      ],
+      "quaternion_wxyz": [
+        -0.112723,
+        -0.20056,
+        0.863693,
+        -0.448446
+      ]
+    },
+    "pose_source": "slam/frame_names + slam/trans_xyz + slam/quat_wxyz"
+  },
+  {
+    "image": "frames/frame_00004_src_001200.jpg",
+    "source_frame": 1200,
+    "camera": "cam0",
+    "camera_intrinsics": [
+      395.00109559502636,
+      394.7747916429034,
+      536.1617651628547,
+      673.6553587142616
+    ],
+    "camera_distortion": [
+      -0.05761959903731187,
+      0.0029356256212510054,
+      -0.006634361165985679,
+      0.0017843379743501806
+    ],
+    "nearest_slam_pose": {
+      "index": 1200,
+      "timestamp": "72917807015228",
+      "position_xyz": [
+        -0.115656,
+        -0.055665,
+        0.109354
+      ],
+      "quaternion_wxyz": [
+        -0.116664,
+        -0.226386,
+        0.81623,
+        -0.518563
+      ]
+    },
+    "pose_source": "slam/frame_names + slam/trans_xyz + slam/quat_wxyz"
+  },
+  {
+    "image": "frames/frame_00005_src_001500.jpg",
+    "source_frame": 1500,
+    "camera": "cam0",
+    "camera_intrinsics": [
+      395.00109559502636,
+      394.7747916429034,
+      536.1617651628547,
+      673.6553587142616
+    ],
+    "camera_distortion": [
+      -0.05761959903731187,
+      0.0029356256212510054,
+      -0.006634361165985679,
+      0.0017843379743501806
+    ],
+    "nearest_slam_pose": {
+      "index": 1500,
+      "timestamp": "72932806535193",
+      "position_xyz": [
+        -0.123519,
+        -0.030804,
+        0.00575
+      ],
+      "quaternion_wxyz": [
+        -0.127654,
+        -0.227687,
+        0.849521,
+        -0.45845
+      ]
+    },
+    "pose_source": "slam/frame_names + slam/trans_xyz + slam/quat_wxyz"
+  },
+  {
+    "image": "frames/frame_00006_src_001800.jpg",
+    "source_frame": 1800,
+    "camera": "cam0",
+    "camera_intrinsics": [
+      395.00109559502636,
+      394.7747916429034,
+      536.1617651628547,
+      673.6553587142616
+    ],
+    "camera_distortion": [
+      -0.05761959903731187,
+      0.0029356256212510054,
+      -0.006634361165985679,
+      0.0017843379743501806
+    ],
+    "nearest_slam_pose": {
+      "index": 1800,
+      "timestamp": "72947804785867",
+      "position_xyz": [
+        -0.178862,
+        -0.02217,
+        -0.014863
+      ],
+      "quaternion_wxyz": [
+        -0.050428,
+        -0.111118,
+        0.875918,
+        -0.466773
+      ]
+    },
+    "pose_source": "slam/frame_names + slam/trans_xyz + slam/quat_wxyz"
+  },
+  {
+    "image": "frames/frame_00007_src_002100.jpg",
+    "source_frame": 2100,
+    "camera": "cam0",
+    "camera_intrinsics": [
+      395.00109559502636,
+      394.7747916429034,
+      536.1617651628547,
+      673.6553587142616
+    ],
+    "camera_distortion": [
+      -0.05761959903731187,
+      0.0029356256212510054,
+      -0.006634361165985679,
+      0.0017843379743501806
+    ],
+    "nearest_slam_pose": {
+      "index": 2100,
+      "timestamp": "72962804786082",
+      "position_xyz": [
+        -0.097799,
+        -0.038912,
+        0.020084
+      ],
+      "quaternion_wxyz": [
+        -0.112574,
+        -0.231402,
+        0.847732,
+        -0.463822
+      ]
+    },
+    "pose_source": "slam/frame_names + slam/trans_xyz + slam/quat_wxyz"
+  }
+]

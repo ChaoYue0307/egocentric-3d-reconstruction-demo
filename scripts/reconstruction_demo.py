@@ -52,6 +52,30 @@ def extract_frames(video_path: Path, output_dir: Path, stride: int, max_frames: 
     return rows
 
 
+def read_slam_records(annotation: Path, max_rows: int | None = None) -> list[dict]:
+    with h5py.File(annotation, "r") as h5:
+        stop = None if max_rows is None or max_rows == 0 else max_rows
+        if stop is None:
+            raw_names = h5["slam/frame_names"][...]
+            trans = np.asarray(h5["slam/trans_xyz"][...], dtype=float)
+            quat = np.asarray(h5["slam/quat_wxyz"][...], dtype=float)
+        else:
+            raw_names = h5["slam/frame_names"][:stop]
+            trans = np.asarray(h5["slam/trans_xyz"][:stop], dtype=float)
+            quat = np.asarray(h5["slam/quat_wxyz"][:stop], dtype=float)
+        names = [np.asarray(x).tobytes().decode("utf-8", errors="replace").strip("\x00") for x in raw_names]
+    records = []
+    for idx, (name, t, q) in enumerate(zip(names, trans, quat)):
+        timestamp = name.rsplit(".", 1)[0]
+        records.append({
+            "index": idx,
+            "timestamp": timestamp,
+            "position_xyz": [round(float(x), 8) for x in t],
+            "quaternion_wxyz": [round(float(x), 8) for x in q],
+        })
+    return records
+
+
 def export_calibration(annotation: Path, output_dir: Path) -> dict:
     payload = {}
     with h5py.File(annotation, "r") as h5:
@@ -64,17 +88,16 @@ def export_calibration(annotation: Path, output_dir: Path) -> dict:
 
 
 def export_slam(annotation: Path, output_dir: Path, max_rows: int = 200) -> dict:
+    records = read_slam_records(annotation, max_rows)
     with h5py.File(annotation, "r") as h5:
-        names = [np.asarray(x).tobytes().decode("utf-8", errors="replace").strip("\x00") for x in h5["slam/frame_names"][:max_rows]]
-        trans = np.asarray(h5["slam/trans_xyz"][:max_rows], dtype=float)
-        quat = np.asarray(h5["slam/quat_wxyz"][:max_rows], dtype=float)
         point_cloud = np.asarray(h5["slam/point_cloud"], dtype=float)
     pose_path = output_dir / "slam_poses_tum.txt"
     with pose_path.open("w", encoding="utf-8") as fp:
         fp.write("# timestamp tx ty tz qx qy qz qw\n")
-        for name, t, q in zip(names, trans, quat):
-            timestamp = name.rsplit(".", 1)[0]
-            fp.write(f"{timestamp} {t[0]:.8f} {t[1]:.8f} {t[2]:.8f} {q[1]:.8f} {q[2]:.8f} {q[3]:.8f} {q[0]:.8f}\n")
+        for record in records:
+            t = record["position_xyz"]
+            q = record["quaternion_wxyz"]
+            fp.write(f"{record['timestamp']} {t[0]:.8f} {t[1]:.8f} {t[2]:.8f} {q[1]:.8f} {q[2]:.8f} {q[3]:.8f} {q[0]:.8f}\n")
     ply_path = output_dir / "slam_point_cloud_preview.ply"
     preview = point_cloud[: min(len(point_cloud), 4000)]
     with ply_path.open("w", encoding="utf-8") as fp:
@@ -84,13 +107,30 @@ def export_slam(annotation: Path, output_dir: Path, max_rows: int = 200) -> dict
         for x, y, z in preview:
             fp.write(f"{x:.8f} {y:.8f} {z:.8f}\n")
     summary = {
-        "num_exported_poses": len(names),
+        "num_exported_poses": len(records),
         "num_point_cloud_points": int(len(point_cloud)),
         "pose_file": str(pose_path.relative_to(output_dir)),
         "point_cloud_preview": str(ply_path.relative_to(output_dir)),
     }
     (output_dir / "slam_summary.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")
     return summary
+
+
+def build_frames_manifest(frames: list[dict], calibration: dict, slam_records: list[dict], camera_name: str) -> list[dict]:
+    camera = calibration.get(camera_name, {})
+    manifest = []
+    for frame in frames:
+        source_frame = int(frame["source_frame"])
+        nearest = min(slam_records, key=lambda row: abs(int(row["index"]) - source_frame)) if slam_records else None
+        manifest.append({
+            **frame,
+            "camera": camera_name,
+            "camera_intrinsics": camera.get("K"),
+            "camera_distortion": camera.get("D"),
+            "nearest_slam_pose": nearest,
+            "pose_source": "slam/frame_names + slam/trans_xyz + slam/quat_wxyz",
+        })
+    return manifest
 
 
 def write_colmap_commands(output_dir: Path, camera_model: str = "OPENCV_FISHEYE") -> None:
@@ -191,6 +231,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--output-dir", type=Path, default=Path("outputs/sample_demo"))
     parser.add_argument("--frame-stride", type=int, default=180)
     parser.add_argument("--max-frames", type=int, default=24)
+    parser.add_argument("--camera-name", default="cam0")
+    parser.add_argument("--max-slam-poses", type=int, default=200)
     return parser.parse_args()
 
 
@@ -200,12 +242,23 @@ def main() -> int:
     annotation = args.data_root / "annotation.hdf5"
     deps = check_dependencies()
     frames = extract_frames(args.data_root / args.video, args.output_dir, args.frame_stride, args.max_frames)
-    export_calibration(annotation, args.output_dir)
-    slam = export_slam(annotation, args.output_dir)
+    calibration = export_calibration(annotation, args.output_dir)
+    slam_records = read_slam_records(annotation, None)
+    manifest = build_frames_manifest(frames, calibration, slam_records, args.camera_name)
+    (args.output_dir / "frames_manifest.json").write_text(json.dumps(manifest, indent=2), encoding="utf-8")
+    slam = export_slam(annotation, args.output_dir, args.max_slam_poses)
     write_colmap_commands(args.output_dir)
     write_nerf_3dgs_templates(args.output_dir)
     write_failure_analysis(args.output_dir, frames, deps, slam)
     (args.output_dir / "dependency_check.json").write_text(json.dumps(deps, indent=2), encoding="utf-8")
+    (args.output_dir / "run_summary.json").write_text(json.dumps({
+        "video": args.video,
+        "camera_name": args.camera_name,
+        "num_extracted_frames": len(frames),
+        "num_manifest_rows": len(manifest),
+        "frame_stride": args.frame_stride,
+        "max_frames": args.max_frames,
+    }, indent=2), encoding="utf-8")
     print(f"extracted_frames={len(frames)} colmap_available={deps['colmap']['available']}")
     return 0
 

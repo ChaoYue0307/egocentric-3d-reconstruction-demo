@@ -47,6 +47,7 @@
     .concept-list span { display:block; color:var(--muted); font-size:.86rem; margin-top:4px; }
     .concept-visual { min-height:240px; border:1px solid var(--line); border-radius:20px; background:#07101e; padding:18px; }
     .concept-visual svg { width:100%; height:240px; display:block; }
+    .asset { width:100%; border-radius:20px; border:1px solid var(--line); background:#020617; margin-top:12px; }
     pre { overflow:auto; border:1px solid var(--line); border-radius:16px; padding:16px; background:#020617; color:#bfdbfe; }
     @media (max-width:900px){ .hero,.pipeline,.risk-grid,.stats,.scene,.command-grid,.concept-lab{grid-template-columns:1fr;} .topbar-inner{align-items:flex-start; flex-direction:column;} }
   </style>
@@ -86,6 +87,7 @@
 
   <section class="card" id="poses">
     <h2>Camera Path Intuition</h2>
+    <img class="asset" src="assets/reconstruction_manifest.svg" alt="Extracted frames linked to nearest SLAM poses" />
     <div class="scene">
       <div class="orbit">
         <svg viewBox="0 0 560 300" role="img" aria-label="Stylized SLAM camera path and point cloud">

@@ -1,5 +1,7 @@
 # Egocentric 3D Reconstruction Demo
 
+[![CI](https://github.com/ChaoYue0307/egocentric-3d-reconstruction-demo/actions/workflows/ci.yml/badge.svg)](https://github.com/ChaoYue0307/egocentric-3d-reconstruction-demo/actions/workflows/ci.yml)
+
 Learn the moving parts behind 3D reconstruction from first-person video:
 frames, camera calibration, SLAM poses, COLMAP, NeRF, and 3D Gaussian Splatting.
 
