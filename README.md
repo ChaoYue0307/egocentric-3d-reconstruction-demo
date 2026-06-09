@@ -5,6 +5,9 @@
 Learn the moving parts behind 3D reconstruction from first-person video:
 frames, camera calibration, SLAM poses, COLMAP, NeRF, and 3D Gaussian Splatting.
 
+Part of the Egocentric Vision Learning Hub:
+https://chaoyue0307.github.io/egocentric-vision-learning-hub/
+
 The script prepares the ingredients that reconstruction systems need. It
 extracts video frames, exports camera calibration, writes a SLAM trajectory,
 generates COLMAP and neural-rendering command templates, and explains common
@@ -69,6 +72,15 @@ checks whether those tools are available and still writes the tutorial artifacts
 | `docs/concepts.md` | glossary for reconstruction and neural rendering terms |
 | `outputs/sample_demo/calibration.json` | sample calibration export |
 | `outputs/sample_demo/failure_analysis.md` | reconstruction failure-mode checklist |
+
+## Common Commands
+
+```bash
+make test
+make help
+make visuals
+make pages
+```
 
 ## Outputs
 
