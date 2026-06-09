@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="360" viewBox="0 0 760 360">
+  <rect width="760" height="360" rx="28" fill="#020617"/>
+  <text x="48" y="48" fill="#f8fafc" font-size="26" font-weight="700" font-family="Inter, Arial">Frame Contact Sheet</text>
+  
+  <rect x="48" y="76" width="148" height="58" rx="14" fill="#07101e" stroke="#263b5f"/>
+  <text x="62" y="99" fill="#e5edf8" font-family="Inter,Arial" font-size="13">frames/frame_00000_src_000000.jpg</text>
+  <text x="62" y="120" fill="#9fb0c9" font-family="Inter,Arial" font-size="12">src 0 · pose 72857807732824</text>
+
+  <rect x="216" y="76" width="148" height="58" rx="14" fill="#07101e" stroke="#263b5f"/>
+  <text x="230" y="99" fill="#e5edf8" font-family="Inter,Arial" font-size="13">frames/frame_00001_src_000300.jpg</text>
+  <text x="230" y="120" fill="#9fb0c9" font-family="Inter,Arial" font-size="12">src 300 · pose 72872804785498</text>
+
+  <rect x="384" y="76" width="148" height="58" rx="14" fill="#07101e" stroke="#263b5f"/>
+  <text x="398" y="99" fill="#e5edf8" font-family="Inter,Arial" font-size="13">frames/frame_00002_src_000600.jpg</text>
+  <text x="398" y="120" fill="#9fb0c9" font-family="Inter,Arial" font-size="12">src 600 · pose 72887804785797</text>
+
+  <rect x="552" y="76" width="148" height="58" rx="14" fill="#07101e" stroke="#263b5f"/>
+  <text x="566" y="99" fill="#e5edf8" font-family="Inter,Arial" font-size="13">frames/frame_00003_src_000900.jpg</text>
+  <text x="566" y="120" fill="#9fb0c9" font-family="Inter,Arial" font-size="12">src 900 · pose 72902804785470</text>
+
+  <rect x="48" y="154" width="148" height="58" rx="14" fill="#07101e" stroke="#263b5f"/>
+  <text x="62" y="177" fill="#e5edf8" font-family="Inter,Arial" font-size="13">frames/frame_00004_src_001200.jpg</text>
+  <text x="62" y="198" fill="#9fb0c9" font-family="Inter,Arial" font-size="12">src 1200 · pose 72917807015228</text>
+
+  <rect x="216" y="154" width="148" height="58" rx="14" fill="#07101e" stroke="#263b5f"/>
+  <text x="230" y="177" fill="#e5edf8" font-family="Inter,Arial" font-size="13">frames/frame_00005_src_001500.jpg</text>
+  <text x="230" y="198" fill="#9fb0c9" font-family="Inter,Arial" font-size="12">src 1500 · pose 72932806535193</text>
+
+  <rect x="384" y="154" width="148" height="58" rx="14" fill="#07101e" stroke="#263b5f"/>
+  <text x="398" y="177" fill="#e5edf8" font-family="Inter,Arial" font-size="13">frames/frame_00006_src_001800.jpg</text>
+  <text x="398" y="198" fill="#9fb0c9" font-family="Inter,Arial" font-size="12">src 1800 · pose 72947804785867</text>
+
+  <rect x="552" y="154" width="148" height="58" rx="14" fill="#07101e" stroke="#263b5f"/>
+  <text x="566" y="177" fill="#e5edf8" font-family="Inter,Arial" font-size="13">frames/frame_00007_src_002100.jpg</text>
+  <text x="566" y="198" fill="#9fb0c9" font-family="Inter,Arial" font-size="12">src 2100 · pose 72962804786082</text>
+
+  <text x="48" y="326" fill="#64748b" font-size="13" font-family="Inter, Arial">Each card links an extracted image to the nearest SLAM pose timestamp.</text>
+</svg>

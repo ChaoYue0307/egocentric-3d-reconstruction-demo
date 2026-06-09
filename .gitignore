@@ -16,6 +16,8 @@ outputs/sample_demo/frames/*
 !outputs/sample_demo/slam_summary.json
 !outputs/sample_demo/colmap_summary.json
 !outputs/sample_demo/colmap_summary.svg
+!outputs/sample_demo/colmap_vs_slam.json
+!outputs/sample_demo/colmap_vs_slam.svg
 outputs/sample_demo/slam_point_cloud_preview.ply
 outputs/sample_demo/slam_poses_tum.txt
 data/

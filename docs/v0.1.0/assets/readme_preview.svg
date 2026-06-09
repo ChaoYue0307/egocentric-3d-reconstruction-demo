@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 420" role="img" aria-label="Preview of the egocentric 3D reconstruction tutorial">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#0f172a"/>
+      <stop offset="0.58" stop-color="#111827"/>
+      <stop offset="1" stop-color="#451a03"/>
+    </linearGradient>
+  </defs>
+  <rect width="960" height="420" rx="34" fill="url(#bg)"/>
+  <circle cx="790" cy="78" r="150" fill="#f59e0b" opacity=".18"/>
+  <circle cx="160" cy="346" r="180" fill="#38bdf8" opacity=".13"/>
+  <text x="56" y="76" fill="#edf2fb" font-family="Inter,Arial,sans-serif" font-size="36" font-weight="800">Egocentric 3D Reconstruction</text>
+  <text x="58" y="112" fill="#aab6ca" font-family="Inter,Arial,sans-serif" font-size="18">Frames, calibration, SLAM poses, COLMAP, NeRF, and 3DGS templates</text>
+  <g transform="translate(76 150)">
+    <rect x="0" y="0" width="190" height="132" rx="22" fill="#111827" stroke="#2a3a5a"/>
+    <rect x="28" y="32" width="42" height="42" rx="10" fill="#164e63" stroke="#38bdf8"/>
+    <rect x="78" y="32" width="42" height="42" rx="10" fill="#164e63" stroke="#38bdf8"/>
+    <rect x="128" y="32" width="42" height="42" rx="10" fill="#164e63" stroke="#38bdf8"/>
+    <text x="95" y="106" fill="#aab6ca" font-family="Inter,Arial,sans-serif" font-size="15" text-anchor="middle">extract frames</text>
+  </g>
+  <g transform="translate(336 150)">
+    <rect x="0" y="0" width="250" height="132" rx="22" fill="#111827" stroke="#2a3a5a"/>
+    <path d="M30 88 C82 28, 150 34, 216 70" fill="none" stroke="#38bdf8" stroke-width="4"/>
+    <circle cx="30" cy="88" r="8" fill="#f59e0b"/>
+    <circle cx="90" cy="48" r="8" fill="#f59e0b"/>
+    <circle cx="160" cy="44" r="8" fill="#f59e0b"/>
+    <circle cx="216" cy="70" r="8" fill="#f59e0b"/>
+    <circle cx="90" cy="48" r="20" fill="none" stroke="#f59e0b" opacity=".8">
+      <animate attributeName="r" values="16;28;16" dur="3s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values=".85;.15;.85" dur="3s" repeatCount="indefinite"/>
+    </circle>
+    <text x="125" y="112" fill="#aab6ca" font-family="Inter,Arial,sans-serif" font-size="15" text-anchor="middle">pose trajectory</text>
+  </g>
+  <g transform="translate(656 150)">
+    <rect x="0" y="0" width="230" height="132" rx="22" fill="#111827" stroke="#2a3a5a"/>
+    <text x="28" y="42" fill="#34d399" font-family="Inter,Arial,sans-serif" font-size="17" font-weight="800">COLMAP summary</text>
+    <rect x="28" y="62" width="120" height="14" rx="7" fill="#38bdf8"/>
+    <rect x="28" y="84" width="160" height="14" rx="7" fill="#a78bfa"/>
+    <rect x="28" y="106" width="86" height="14" rx="7" fill="#34d399"/>
+  </g>
+  <text x="56" y="360" fill="#edf2fb" font-family="Inter,Arial,sans-serif" font-size="20" font-weight="700">Parse COLMAP results without rerunning reconstruction</text>
+  <text x="56" y="390" fill="#aab6ca" font-family="Inter,Arial,sans-serif" font-size="16">ego-recon-demo --parse-colmap-only --colmap-model outputs/sample_demo/colmap/sparse/0</text>
+</svg>

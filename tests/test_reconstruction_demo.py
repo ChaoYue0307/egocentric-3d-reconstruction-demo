@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 from pathlib import Path
 import sys
 
@@ -9,7 +10,7 @@ import numpy as np
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 
 from adapters import XperienceReconstructionAdapter  # noqa: E402
-from reconstruction_demo import as_jsonable, build_frames_manifest, export_slam, parse_colmap_model, read_slam_records, write_colmap_summary  # noqa: E402
+from reconstruction_demo import as_jsonable, build_frames_manifest, compare_colmap_to_slam, export_slam, parse_colmap_model, read_slam_records, write_colmap_summary  # noqa: E402
 
 
 def make_annotation(path: Path) -> None:
@@ -73,9 +74,25 @@ def test_parse_colmap_model_text_files(tmp_path: Path) -> None:
     assert summary["num_registered_images"] == 1
     assert summary["num_sparse_points"] == 2
     assert summary["mean_reprojection_error"] == 0.6
+    assert summary["image_poses"][0]["name"] == "frame_00000.jpg"
     write_colmap_summary(tmp_path, summary)
     assert (tmp_path / "colmap_summary.json").exists()
     assert (tmp_path / "colmap_summary.svg").exists()
+
+
+def test_compare_colmap_to_slam(tmp_path: Path) -> None:
+    manifest = [{
+        "source_frame": 42,
+        "nearest_slam_pose": {"timestamp": "100", "position_xyz": [1.0, 2.0, 3.0]},
+    }]
+    manifest_path = tmp_path / "frames_manifest.json"
+    manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
+    comparison = compare_colmap_to_slam(
+        {"image_poses": [{"name": "frame_00000_src_000042.jpg", "tvec_xyz": [1.0, 2.0, 5.0]}]},
+        manifest_path,
+    )
+    assert comparison["num_matched_frames"] == 1
+    assert comparison["mean_translation_delta"] == 2.0
 
 
 def test_xperience_reconstruction_adapter_paths(tmp_path: Path) -> None:

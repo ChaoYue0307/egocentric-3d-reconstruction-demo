@@ -3,6 +3,8 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
+import re
 import shutil
 from pathlib import Path
 
@@ -250,6 +252,7 @@ def parse_colmap_model(model_dir: Path) -> dict:
         "num_sparse_points": len(points),
         "camera_models": sorted({row["model"] for row in cameras}),
         "registered_images": [row["name"] for row in images[:20]],
+        "image_poses": images[:100],
         "mean_reprojection_error": round(sum(errors) / len(errors), 6) if errors else None,
         "point_bbox": bbox,
     }
@@ -279,6 +282,56 @@ def write_colmap_summary(output_dir: Path, summary: dict) -> None:
     parts.append(f'<text x="32" y="292" fill="#aab6ca" font-family="Inter,Arial,sans-serif" font-size="15">mean reprojection error: {error if error is not None else "n/a"}</text>')
     parts.append("</svg>")
     (output_dir / "colmap_summary.svg").write_text("\n".join(parts), encoding="utf-8")
+
+
+def compare_colmap_to_slam(colmap_summary: dict, frames_manifest_path: Path) -> dict:
+    if not frames_manifest_path.exists():
+        return {"num_matched_frames": 0, "mean_translation_delta": None, "rows": []}
+    manifest = json.loads(frames_manifest_path.read_text(encoding="utf-8"))
+    by_source = {int(row["source_frame"]): row for row in manifest}
+    rows = []
+    for image in colmap_summary.get("image_poses", []):
+        match = re.search(r"_src_(\d+)", image["name"])
+        if not match:
+            continue
+        source_frame = int(match.group(1))
+        frame = by_source.get(source_frame)
+        slam_pose = frame.get("nearest_slam_pose") if frame else None
+        if not slam_pose:
+            continue
+        colmap_t = image["tvec_xyz"]
+        slam_t = slam_pose["position_xyz"]
+        delta = math.sqrt(sum((float(a) - float(b)) ** 2 for a, b in zip(colmap_t, slam_t, strict=True)))
+        rows.append({
+            "image": image["name"],
+            "source_frame": source_frame,
+            "slam_timestamp": slam_pose["timestamp"],
+            "translation_delta": round(delta, 6),
+        })
+    mean_delta = round(sum(row["translation_delta"] for row in rows) / len(rows), 6) if rows else None
+    return {"num_matched_frames": len(rows), "mean_translation_delta": mean_delta, "rows": rows}
+
+
+def write_pose_comparison(output_dir: Path, comparison: dict) -> None:
+    (output_dir / "colmap_vs_slam.json").write_text(json.dumps(comparison, indent=2), encoding="utf-8")
+    rows = comparison.get("rows", [])[:8]
+    max_delta = max([row["translation_delta"] for row in rows] + [1.0])
+    bars = []
+    y = 86
+    for row in rows:
+        width = int(420 * row["translation_delta"] / max_delta)
+        bars.append(f'<text x="40" y="{y + 16}" fill="#aab6ca" font-family="Inter,Arial" font-size="13">{row["source_frame"]}</text>')
+        bars.append(f'<rect x="118" y="{y}" width="{max(width, 4)}" height="22" rx="8" fill="#f59e0b"/>')
+        bars.append(f'<text x="{132 + max(width, 4)}" y="{y + 16}" fill="#edf2fb" font-family="Inter,Arial" font-size="13">{row["translation_delta"]}</text>')
+        y += 34
+    svg = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 360" role="img" aria-label="COLMAP versus SLAM pose comparison">
+  <rect width="720" height="360" rx="24" fill="#0b1220"/>
+  <text x="32" y="44" fill="#edf2fb" font-family="Inter,Arial" font-size="24" font-weight="800">COLMAP vs SLAM Pose Check</text>
+  <text x="32" y="70" fill="#aab6ca" font-family="Inter,Arial" font-size="14">{comparison["num_matched_frames"]} matched frames · mean translation delta: {comparison["mean_translation_delta"]}</text>
+  {''.join(bars)}
+</svg>
+"""
+    (output_dir / "colmap_vs_slam.svg").write_text(svg, encoding="utf-8")
 
 
 def write_failure_analysis(output_dir: Path, frames: list[dict], deps: dict, slam: dict) -> None:
@@ -337,6 +390,8 @@ def main() -> int:
             raise SystemExit("--parse-colmap-only requires --colmap-model")
         summary = parse_colmap_model(args.colmap_model)
         write_colmap_summary(args.output_dir, summary)
+        comparison = compare_colmap_to_slam(summary, args.output_dir / "frames_manifest.json")
+        write_pose_comparison(args.output_dir, comparison)
         print(f"colmap_images={summary['num_registered_images']} sparse_points={summary['num_sparse_points']}")
         return 0
     annotation = args.data_root / "annotation.hdf5"
@@ -353,6 +408,7 @@ def main() -> int:
     colmap_summary = parse_colmap_model(args.colmap_model) if args.colmap_model else None
     if colmap_summary:
         write_colmap_summary(args.output_dir, colmap_summary)
+        write_pose_comparison(args.output_dir, compare_colmap_to_slam(colmap_summary, args.output_dir / "frames_manifest.json"))
     (args.output_dir / "dependency_check.json").write_text(json.dumps(deps, indent=2), encoding="utf-8")
     (args.output_dir / "run_summary.json").write_text(json.dumps({
         "video": args.video,

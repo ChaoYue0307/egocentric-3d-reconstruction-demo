@@ -39,8 +39,34 @@ def render(manifest_path: Path, summary_path: Path, output_path: Path) -> None:
     output_path.write_text(svg, encoding="utf-8")
 
 
+def render_contact_sheet(manifest_path: Path, output_path: Path) -> None:
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    cards = []
+    for idx, row in enumerate(manifest[:12]):
+        col = idx % 4
+        grid_row = idx // 4
+        x = 48 + col * 168
+        y = 76 + grid_row * 78
+        pose = row.get("nearest_slam_pose") or {}
+        cards.append(f"""
+  <rect x="{x}" y="{y}" width="148" height="58" rx="14" fill="#07101e" stroke="#263b5f"/>
+  <text x="{x + 14}" y="{y + 23}" fill="#e5edf8" font-family="Inter,Arial" font-size="13">{row.get("image", "frame")}</text>
+  <text x="{x + 14}" y="{y + 44}" fill="#9fb0c9" font-family="Inter,Arial" font-size="12">src {row.get("source_frame")} · pose {pose.get("timestamp", "n/a")}</text>
+""")
+    svg = f"""<svg xmlns="http://www.w3.org/2000/svg" width="760" height="360" viewBox="0 0 760 360">
+  <rect width="760" height="360" rx="28" fill="#020617"/>
+  <text x="48" y="48" fill="#f8fafc" font-size="26" font-weight="700" font-family="Inter, Arial">Frame Contact Sheet</text>
+  {''.join(cards)}
+  <text x="48" y="326" fill="#64748b" font-size="13" font-family="Inter, Arial">Each card links an extracted image to the nearest SLAM pose timestamp.</text>
+</svg>
+"""
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    output_path.write_text(svg, encoding="utf-8")
+
+
 def main() -> int:
     render(Path("outputs/sample_demo/frames_manifest.json"), Path("outputs/sample_demo/slam_summary.json"), Path("docs/assets/reconstruction_manifest.svg"))
+    render_contact_sheet(Path("outputs/sample_demo/frames_manifest.json"), Path("docs/assets/frame_contact_sheet.svg"))
     return 0
 
 

@@ -14,6 +14,7 @@ generates COLMAP and neural-rendering command templates, and explains common
 failure cases for egocentric footage.
 
 ![Egocentric 3D reconstruction tutorial preview](docs/assets/readme_preview.svg)
+![Animated reconstruction demo loop](docs/assets/demo_loop.svg)
 
 ## Interactive Tutorial
 
@@ -82,6 +83,9 @@ ego-recon-demo \
   --output-dir outputs/sample_demo
 ```
 
+When `frames_manifest.json` is present, the parser also writes a lightweight
+COLMAP-vs-SLAM pose comparison.
+
 ## Repository Map
 
 | Path | Purpose |
@@ -112,8 +116,10 @@ make pages
 | `calibration.json` | camera intrinsics, distortion, and rig transforms |
 | `slam_poses_tum.txt` | camera trajectory in a common TUM-like text format |
 | `slam_point_cloud_preview.ply` | lightweight preview of the existing SLAM point cloud |
+| `frame_contact_sheet.svg` | visual index of extracted frames and nearest SLAM poses |
 | `colmap_commands.sh` | COLMAP feature, matching, mapping, and undistortion commands |
 | `colmap_summary.json` / `colmap_summary.svg` | optional summary of a parsed COLMAP sparse model |
+| `colmap_vs_slam.json` / `colmap_vs_slam.svg` | optional trajectory comparison against nearest SLAM poses |
 | `nerf_3dgs_templates.sh` | command templates for NeRFStudio and Gaussian Splatting |
 | `failure_analysis.md` | checklist for diagnosing egocentric reconstruction failures |
 
