@@ -1,0 +1,320 @@
+{
+  "num_frames": 24,
+  "blur_threshold": 60.0,
+  "overlap_threshold": 80,
+  "num_blurry": 0,
+  "num_low_overlap": 0,
+  "mean_matches_to_previous": 621.5,
+  "weakest_pairs": [
+    {
+      "image": "frames/frame_00001_src_000180.jpg",
+      "matches_to_previous": 387
+    },
+    {
+      "image": "frames/frame_00013_src_002340.jpg",
+      "matches_to_previous": 436
+    },
+    {
+      "image": "frames/frame_00002_src_000360.jpg",
+      "matches_to_previous": 443
+    },
+    {
+      "image": "frames/frame_00022_src_003960.jpg",
+      "matches_to_previous": 476
+    },
+    {
+      "image": "frames/frame_00021_src_003780.jpg",
+      "matches_to_previous": 508
+    }
+  ],
+  "frames": [
+    {
+      "image": "frames/frame_00000_src_000000.jpg",
+      "source_frame": 0,
+      "blur_laplacian_var": 176.79,
+      "blurry": false,
+      "mean_intensity": 90.65,
+      "underexposed_fraction": 0.0008,
+      "overexposed_fraction": 0.0058,
+      "num_keypoints": 1500,
+      "matches_to_previous": null,
+      "low_overlap": false
+    },
+    {
+      "image": "frames/frame_00001_src_000180.jpg",
+      "source_frame": 180,
+      "blur_laplacian_var": 147.86,
+      "blurry": false,
+      "mean_intensity": 110.25,
+      "underexposed_fraction": 0.0001,
+      "overexposed_fraction": 0.006,
+      "num_keypoints": 1500,
+      "matches_to_previous": 387,
+      "low_overlap": false
+    },
+    {
+      "image": "frames/frame_00002_src_000360.jpg",
+      "source_frame": 360,
+      "blur_laplacian_var": 225.79,
+      "blurry": false,
+      "mean_intensity": 94.69,
+      "underexposed_fraction": 0.0003,
+      "overexposed_fraction": 0.0144,
+      "num_keypoints": 1500,
+      "matches_to_previous": 443,
+      "low_overlap": false
+    },
+    {
+      "image": "frames/frame_00003_src_000540.jpg",
+      "source_frame": 540,
+      "blur_laplacian_var": 201.91,
+      "blurry": false,
+      "mean_intensity": 93.07,
+      "underexposed_fraction": 0.0005,
+      "overexposed_fraction": 0.0101,
+      "num_keypoints": 1500,
+      "matches_to_previous": 751,
+      "low_overlap": false
+    },
+    {
+      "image": "frames/frame_00004_src_000720.jpg",
+      "source_frame": 720,
+      "blur_laplacian_var": 215.3,
+      "blurry": false,
+      "mean_intensity": 94.86,
+      "underexposed_fraction": 0.0004,
+      "overexposed_fraction": 0.0085,
+      "num_keypoints": 1500,
+      "matches_to_previous": 536,
+      "low_overlap": false
+    },
+    {
+      "image": "frames/frame_00005_src_000900.jpg",
+      "source_frame": 900,
+      "blur_laplacian_var": 190.35,
+      "blurry": false,
+      "mean_intensity": 92.56,
+      "underexposed_fraction": 0.0002,
+      "overexposed_fraction": 0.0062,
+      "num_keypoints": 1500,
+      "matches_to_previous": 595,
+      "low_overlap": false
+    },
+    {
+      "image": "frames/frame_00006_src_001080.jpg",
+      "source_frame": 1080,
+      "blur_laplacian_var": 208.93,
+      "blurry": false,
+      "mean_intensity": 92.62,
+      "underexposed_fraction": 0.0003,
+      "overexposed_fraction": 0.0089,
+      "num_keypoints": 1500,
+      "matches_to_previous": 802,
+      "low_overlap": false
+    },
+    {
+      "image": "frames/frame_00007_src_001260.jpg",
+      "source_frame": 1260,
+      "blur_laplacian_var": 154.13,
+      "blurry": false,
+      "mean_intensity": 90.8,
+      "underexposed_fraction": 0.0002,
+      "overexposed_fraction": 0.0044,
+      "num_keypoints": 1500,
+      "matches_to_previous": 529,
+      "low_overlap": false
+    },
+    {
+      "image": "frames/frame_00008_src_001440.jpg",
+      "source_frame": 1440,
+      "blur_laplacian_var": 147.84,
+      "blurry": false,
+      "mean_intensity": 87.28,
+      "underexposed_fraction": 0.0002,
+      "overexposed_fraction": 0.0034,
+      "num_keypoints": 1500,
+      "matches_to_previous": 546,
+      "low_overlap": false
+    },
+    {
+      "image": "frames/frame_00009_src_001620.jpg",
+      "source_frame": 1620,
+      "blur_laplacian_var": 215.72,
+      "blurry": false,
+      "mean_intensity": 95.37,
+      "underexposed_fraction": 0.0003,
+      "overexposed_fraction": 0.0074,
+      "num_keypoints": 1500,
+      "matches_to_previous": 733,
+      "low_overlap": false
+    },
+    {
+      "image": "frames/frame_00010_src_001800.jpg",
+      "source_frame": 1800,
+      "blur_laplacian_var": 171.53,
+      "blurry": false,
+      "mean_intensity": 96.47,
+      "underexposed_fraction": 0.0003,
+      "overexposed_fraction": 0.0169,
+      "num_keypoints": 1500,
+      "matches_to_previous": 581,
+      "low_overlap": false
+    },
+    {
+      "image": "frames/frame_00011_src_001980.jpg",
+      "source_frame": 1980,
+      "blur_laplacian_var": 176.98,
+      "blurry": false,
+      "mean_intensity": 90.8,
+      "underexposed_fraction": 0.0003,
+      "overexposed_fraction": 0.0079,
+      "num_keypoints": 1500,
+      "matches_to_previous": 659,
+      "low_overlap": false
+    },
+    {
+      "image": "frames/frame_00012_src_002160.jpg",
+      "source_frame": 2160,
+      "blur_laplacian_var": 208.97,
+      "blurry": false,
+      "mean_intensity": 94.14,
+      "underexposed_fraction": 0.0005,
+      "overexposed_fraction": 0.008,
+      "num_keypoints": 1500,
+      "matches_to_previous": 709,
+      "low_overlap": false
+    },
+    {
+      "image": "frames/frame_00013_src_002340.jpg",
+      "source_frame": 2340,
+      "blur_laplacian_var": 216.51,
+      "blurry": false,
+      "mean_intensity": 102.02,
+      "underexposed_fraction": 0.0001,
+      "overexposed_fraction": 0.0194,
+      "num_keypoints": 1500,
+      "matches_to_previous": 436,
+      "low_overlap": false
+    },
+    {
+      "image": "frames/frame_00014_src_002520.jpg",
+      "source_frame": 2520,
+      "blur_laplacian_var": 221.09,
+      "blurry": false,
+      "mean_intensity": 89.83,
+      "underexposed_fraction": 0.0006,
+      "overexposed_fraction": 0.0082,
+      "num_keypoints": 1500,
+      "matches_to_previous": 574,
+      "low_overlap": false
+    },
+    {
+      "image": "frames/frame_00015_src_002700.jpg",
+      "source_frame": 2700,
+      "blur_laplacian_var": 196.46,
+      "blurry": false,
+      "mean_intensity": 91.13,
+      "underexposed_fraction": 0.0006,
+      "overexposed_fraction": 0.0096,
+      "num_keypoints": 1500,
+      "matches_to_previous": 621,
+      "low_overlap": false
+    },
+    {
+      "image": "frames/frame_00016_src_002880.jpg",
+      "source_frame": 2880,
+      "blur_laplacian_var": 173.87,
+      "blurry": false,
+      "mean_intensity": 89.65,
+      "underexposed_fraction": 0.0004,
+      "overexposed_fraction": 0.0092,
+      "num_keypoints": 1500,
+      "matches_to_previous": 811,
+      "low_overlap": false
+    },
+    {
+      "image": "frames/frame_00017_src_003060.jpg",
+      "source_frame": 3060,
+      "blur_laplacian_var": 212.16,
+      "blurry": false,
+      "mean_intensity": 92.46,
+      "underexposed_fraction": 0.0003,
+      "overexposed_fraction": 0.0098,
+      "num_keypoints": 1500,
+      "matches_to_previous": 599,
+      "low_overlap": false
+    },
+    {
+      "image": "frames/frame_00018_src_003240.jpg",
+      "source_frame": 3240,
+      "blur_laplacian_var": 218.54,
+      "blurry": false,
+      "mean_intensity": 94.31,
+      "underexposed_fraction": 0.0004,
+      "overexposed_fraction": 0.0146,
+      "num_keypoints": 1500,
+      "matches_to_previous": 850,
+      "low_overlap": false
+    },
+    {
+      "image": "frames/frame_00019_src_003420.jpg",
+      "source_frame": 3420,
+      "blur_laplacian_var": 198.71,
+      "blurry": false,
+      "mean_intensity": 96.15,
+      "underexposed_fraction": 0.0003,
+      "overexposed_fraction": 0.0232,
+      "num_keypoints": 1500,
+      "matches_to_previous": 976,
+      "low_overlap": false
+    },
+    {
+      "image": "frames/frame_00020_src_003600.jpg",
+      "source_frame": 3600,
+      "blur_laplacian_var": 199.13,
+      "blurry": false,
+      "mean_intensity": 97.07,
+      "underexposed_fraction": 0.0004,
+      "overexposed_fraction": 0.0192,
+      "num_keypoints": 1500,
+      "matches_to_previous": 617,
+      "low_overlap": false
+    },
+    {
+      "image": "frames/frame_00021_src_003780.jpg",
+      "source_frame": 3780,
+      "blur_laplacian_var": 170.58,
+      "blurry": false,
+      "mean_intensity": 93.04,
+      "underexposed_fraction": 0.0002,
+      "overexposed_fraction": 0.0163,
+      "num_keypoints": 1500,
+      "matches_to_previous": 508,
+      "low_overlap": false
+    },
+    {
+      "image": "frames/frame_00022_src_003960.jpg",
+      "source_frame": 3960,
+      "blur_laplacian_var": 188.31,
+      "blurry": false,
+      "mean_intensity": 97.73,
+      "underexposed_fraction": 0.0003,
+      "overexposed_fraction": 0.0171,
+      "num_keypoints": 1500,
+      "matches_to_previous": 476,
+      "low_overlap": false
+    },
+    {
+      "image": "frames/frame_00023_src_004140.jpg",
+      "source_frame": 4140,
+      "blur_laplacian_var": 188.12,
+      "blurry": false,
+      "mean_intensity": 99.42,
+      "underexposed_fraction": 0.0004,
+      "overexposed_fraction": 0.0269,
+      "num_keypoints": 1500,
+      "matches_to_previous": 556,
+      "low_overlap": false
+    }
+  ]
+}

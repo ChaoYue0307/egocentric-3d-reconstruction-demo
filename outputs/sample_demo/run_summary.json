@@ -5,5 +5,11 @@
   "num_manifest_rows": 24,
   "frame_stride": 180,
   "max_frames": 24,
-  "colmap_summary": null
+  "colmap_summary": null,
+  "frame_quality": {
+    "num_blurry": 1,
+    "num_low_overlap": 0,
+    "mean_matches_to_previous": 719.3
+  },
+  "hand_masks": null
 }

@@ -20,8 +20,14 @@ outputs/sample_demo/frames/*
 !outputs/sample_demo/colmap_vs_slam.svg
 !outputs/sample_demo/colmap_run_report.json
 !outputs/sample_demo/colmap_run_report.md
+!outputs/sample_demo/frame_quality.json
 outputs/sample_demo/slam_point_cloud_preview.ply
 outputs/sample_demo/slam_poses_tum.txt
+!outputs/cam1_hand_mask_demo/
+outputs/cam1_hand_mask_demo/*
+!outputs/cam1_hand_mask_demo/hand_mask_report.json
+!outputs/cam1_hand_mask_demo/hand_mask_preview_0.jpg
+!outputs/cam1_hand_mask_demo/frame_quality.json
 data/
 *.hdf5
 *.mp4

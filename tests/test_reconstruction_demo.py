@@ -10,7 +10,21 @@ import numpy as np
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 
 from adapters import XperienceReconstructionAdapter  # noqa: E402
-from reconstruction_demo import as_jsonable, build_frames_manifest, compare_colmap_to_slam, export_slam, parse_colmap_model, read_slam_records, write_colmap_summary  # noqa: E402
+from reconstruction_demo import (  # noqa: E402
+    as_jsonable,
+    build_frames_manifest,
+    colmap_camera_center,
+    compare_colmap_to_slam,
+    draw_hand_mask,
+    export_slam,
+    frame_quality_report,
+    hand_chain_candidates,
+    parse_colmap_model,
+    read_slam_records,
+    trajectory_metrics,
+    umeyama_alignment,
+    write_colmap_summary,
+)
 
 
 def make_annotation(path: Path) -> None:
@@ -80,7 +94,7 @@ def test_parse_colmap_model_text_files(tmp_path: Path) -> None:
     assert (tmp_path / "colmap_summary.svg").exists()
 
 
-def test_compare_colmap_to_slam(tmp_path: Path) -> None:
+def test_compare_colmap_to_slam_uses_camera_centers(tmp_path: Path) -> None:
     manifest = [{
         "source_frame": 42,
         "nearest_slam_pose": {"timestamp": "100", "position_xyz": [1.0, 2.0, 3.0]},
@@ -88,11 +102,71 @@ def test_compare_colmap_to_slam(tmp_path: Path) -> None:
     manifest_path = tmp_path / "frames_manifest.json"
     manifest_path.write_text(json.dumps(manifest), encoding="utf-8")
     comparison = compare_colmap_to_slam(
-        {"image_poses": [{"name": "frame_00000_src_000042.jpg", "tvec_xyz": [1.0, 2.0, 5.0]}]},
+        {"image_poses": [{"name": "frame_00000_src_000042.jpg", "qvec_wxyz": [1.0, 0.0, 0.0, 0.0], "tvec_xyz": [-1.0, -2.0, -3.0]}]},
         manifest_path,
     )
     assert comparison["num_matched_frames"] == 1
-    assert comparison["mean_translation_delta"] == 2.0
+    assert comparison["mean_translation_delta"] == 0.0
+
+
+def test_colmap_camera_center_identity_rotation() -> None:
+    center = colmap_camera_center([1.0, 0.0, 0.0, 0.0], [1.0, 2.0, 3.0])
+    assert center == [-1.0, -2.0, -3.0]
+
+
+def test_umeyama_recovers_similarity_transform() -> None:
+    rng = np.random.default_rng(0)
+    src = rng.normal(size=(20, 3))
+    angle = 0.7
+    R_true = np.array([
+        [np.cos(angle), -np.sin(angle), 0.0],
+        [np.sin(angle), np.cos(angle), 0.0],
+        [0.0, 0.0, 1.0],
+    ])
+    dst = (2.0 * (R_true @ src.T)).T + np.array([1.0, -2.0, 0.5])
+    scale, R, t = umeyama_alignment(src, dst)
+    assert abs(scale - 2.0) < 1e-9
+    assert np.allclose(R, R_true)
+    metrics = trajectory_metrics(src, dst)
+    assert metrics["ate_rmse"] < 1e-9
+    assert metrics["rpe_rmse"] < 1e-9
+    assert abs(metrics["scale"] - 2.0) < 1e-9
+
+
+def test_hand_chain_candidates_has_four_compositions() -> None:
+    candidates = hand_chain_candidates(np.eye(4), np.eye(4))
+    assert len(candidates) == 4
+    for T in candidates.values():
+        assert np.allclose(T, np.eye(4))
+
+
+def test_draw_hand_mask_blocks_joint_region() -> None:
+    mask = draw_hand_mask((200, 300), [(150.0, 100.0)], [0.5], focal_px=400.0, dilation_px=5)
+    assert mask.shape == (200, 300)
+    assert mask[100, 150] == 0
+    assert mask[5, 5] == 255
+    assert (mask == 0).mean() > 0.01
+
+
+def test_frame_quality_report_flags_blur(tmp_path: Path) -> None:
+    import cv2
+
+    rng = np.random.default_rng(0)
+    sharp = (rng.integers(0, 256, size=(200, 200, 3))).astype(np.uint8)
+    blurry = cv2.GaussianBlur(sharp, (31, 31), 12)
+    frame_dir = tmp_path / "frames"
+    frame_dir.mkdir()
+    cv2.imwrite(str(frame_dir / "a.jpg"), sharp)
+    cv2.imwrite(str(frame_dir / "b.jpg"), blurry)
+    frames = [
+        {"image": "frames/a.jpg", "source_frame": 0},
+        {"image": "frames/b.jpg", "source_frame": 180},
+    ]
+    summary = frame_quality_report(tmp_path, frames)
+    assert summary["num_frames"] == 2
+    assert summary["frames"][0]["blurry"] is False
+    assert summary["frames"][1]["blurry"] is True
+    assert (tmp_path / "frame_quality.json").exists()
 
 
 def test_xperience_reconstruction_adapter_paths(tmp_path: Path) -> None:

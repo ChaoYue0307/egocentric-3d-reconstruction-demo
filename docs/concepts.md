@@ -69,3 +69,39 @@ reconstruction:
 
 Good reconstruction starts with clean frame sampling, calibration awareness, and
 explicit failure analysis.
+
+## Frame Quality Diagnostics
+
+Reconstruction fails quietly when inputs are weak. Three cheap numbers predict
+most failures before COLMAP runs: Laplacian variance (blur — low variance
+means few sharp edges), exposure clipping fractions, and ORB feature matches
+between consecutive frames (overlap — the matches COLMAP will actually rely
+on). Measuring them on a central crop keeps the black fisheye border from
+skewing the statistics.
+
+## Extrinsic Convention Verification
+
+A transform stored as `T_c_b` might map body→camera or camera→body, and the
+SLAM pose might be world→body or body→world. Names do not disambiguate;
+geometry does. Projecting known 3D points (here, mocap hand joints) under each
+candidate composition and scoring in-bounds fraction plus depth plausibility
+selects the right chain empirically — and the wide fisheye field of view makes
+in-bounds alone insufficient, which is why the depth prior matters.
+
+## Dynamic-Object Masking
+
+COLMAP assumes a static scene; hands and manipulated objects violate it.
+A mask (white = use, black = ignore) removes those pixels from feature
+extraction. Masks from projected mocap are approximate — registration offsets
+of tens of pixels are normal — so dilation absorbs error and a visual preview
+is mandatory before trusting them.
+
+## ATE, RPE, and Sim(3) Alignment
+
+COLMAP trajectories live in an arbitrary frame and scale, so comparing raw
+translations to SLAM is meaningless. First convert COLMAP world-to-camera
+poses to camera centers (`C = -R^T t`), then align with a similarity
+transform (Umeyama). ATE RMSE measures global consistency after alignment;
+RPE RMSE measures local drift between consecutive poses; the recovered scale
+is itself diagnostic — a scale far from any physical expectation signals a
+degenerate reconstruction.

@@ -1,0 +1,160 @@
+{
+  "camera": "cam1",
+  "convention_selection": {
+    "camera": "cam1",
+    "selected_chain": "inv(cam_body) @ world_body",
+    "candidates": {
+      "cam_body @ inv(world_body)": {
+        "in_front_fraction": 0.0,
+        "in_bounds_fraction": 0.0,
+        "median_depth_m": null,
+        "score": 0.0
+      },
+      "inv(cam_body) @ inv(world_body)": {
+        "in_front_fraction": 0.9771,
+        "in_bounds_fraction": 0.9771,
+        "median_depth_m": 0.1455,
+        "score": 0.9771428571428571
+      },
+      "cam_body @ world_body": {
+        "in_front_fraction": 0.0,
+        "in_bounds_fraction": 0.0,
+        "median_depth_m": null,
+        "score": 0.0
+      },
+      "inv(cam_body) @ world_body": {
+        "in_front_fraction": 0.941,
+        "in_bounds_fraction": 0.941,
+        "median_depth_m": 0.3364,
+        "score": 1.940952380952381
+      }
+    }
+  },
+  "dilation_px": 25,
+  "mask_convention": "COLMAP: white pixels are used for feature extraction, black pixels are ignored.",
+  "registration_caveat": "Mocap-to-camera registration shows a systematic offset of tens of pixels on this rig; masks are dilated to compensate. Always inspect hand_mask_preview_*.jpg.",
+  "num_masks": 24,
+  "mean_masked_fraction": 0.1204,
+  "masks": [
+    {
+      "image": "frames/frame_00000_src_000000.jpg",
+      "mask": "hand_masks/frame_00000_src_000000.jpg.png",
+      "masked_fraction": 0.1524
+    },
+    {
+      "image": "frames/frame_00001_src_000180.jpg",
+      "mask": "hand_masks/frame_00001_src_000180.jpg.png",
+      "masked_fraction": 0.1193
+    },
+    {
+      "image": "frames/frame_00002_src_000360.jpg",
+      "mask": "hand_masks/frame_00002_src_000360.jpg.png",
+      "masked_fraction": 0.0717
+    },
+    {
+      "image": "frames/frame_00003_src_000540.jpg",
+      "mask": "hand_masks/frame_00003_src_000540.jpg.png",
+      "masked_fraction": 0.0509
+    },
+    {
+      "image": "frames/frame_00004_src_000720.jpg",
+      "mask": "hand_masks/frame_00004_src_000720.jpg.png",
+      "masked_fraction": 0.1362
+    },
+    {
+      "image": "frames/frame_00005_src_000900.jpg",
+      "mask": "hand_masks/frame_00005_src_000900.jpg.png",
+      "masked_fraction": 0.1422
+    },
+    {
+      "image": "frames/frame_00006_src_001080.jpg",
+      "mask": "hand_masks/frame_00006_src_001080.jpg.png",
+      "masked_fraction": 0.0877
+    },
+    {
+      "image": "frames/frame_00007_src_001260.jpg",
+      "mask": "hand_masks/frame_00007_src_001260.jpg.png",
+      "masked_fraction": 0.1163
+    },
+    {
+      "image": "frames/frame_00008_src_001440.jpg",
+      "mask": "hand_masks/frame_00008_src_001440.jpg.png",
+      "masked_fraction": 0.1684
+    },
+    {
+      "image": "frames/frame_00009_src_001620.jpg",
+      "mask": "hand_masks/frame_00009_src_001620.jpg.png",
+      "masked_fraction": 0.153
+    },
+    {
+      "image": "frames/frame_00010_src_001800.jpg",
+      "mask": "hand_masks/frame_00010_src_001800.jpg.png",
+      "masked_fraction": 0.1584
+    },
+    {
+      "image": "frames/frame_00011_src_001980.jpg",
+      "mask": "hand_masks/frame_00011_src_001980.jpg.png",
+      "masked_fraction": 0.1181
+    },
+    {
+      "image": "frames/frame_00012_src_002160.jpg",
+      "mask": "hand_masks/frame_00012_src_002160.jpg.png",
+      "masked_fraction": 0.1393
+    },
+    {
+      "image": "frames/frame_00013_src_002340.jpg",
+      "mask": "hand_masks/frame_00013_src_002340.jpg.png",
+      "masked_fraction": 0.0839
+    },
+    {
+      "image": "frames/frame_00014_src_002520.jpg",
+      "mask": "hand_masks/frame_00014_src_002520.jpg.png",
+      "masked_fraction": 0.1721
+    },
+    {
+      "image": "frames/frame_00015_src_002700.jpg",
+      "mask": "hand_masks/frame_00015_src_002700.jpg.png",
+      "masked_fraction": 0.0803
+    },
+    {
+      "image": "frames/frame_00016_src_002880.jpg",
+      "mask": "hand_masks/frame_00016_src_002880.jpg.png",
+      "masked_fraction": 0.1089
+    },
+    {
+      "image": "frames/frame_00017_src_003060.jpg",
+      "mask": "hand_masks/frame_00017_src_003060.jpg.png",
+      "masked_fraction": 0.1304
+    },
+    {
+      "image": "frames/frame_00018_src_003240.jpg",
+      "mask": "hand_masks/frame_00018_src_003240.jpg.png",
+      "masked_fraction": 0.1235
+    },
+    {
+      "image": "frames/frame_00019_src_003420.jpg",
+      "mask": "hand_masks/frame_00019_src_003420.jpg.png",
+      "masked_fraction": 0.1221
+    },
+    {
+      "image": "frames/frame_00020_src_003600.jpg",
+      "mask": "hand_masks/frame_00020_src_003600.jpg.png",
+      "masked_fraction": 0.1099
+    },
+    {
+      "image": "frames/frame_00021_src_003780.jpg",
+      "mask": "hand_masks/frame_00021_src_003780.jpg.png",
+      "masked_fraction": 0.1733
+    },
+    {
+      "image": "frames/frame_00022_src_003960.jpg",
+      "mask": "hand_masks/frame_00022_src_003960.jpg.png",
+      "masked_fraction": 0.0586
+    },
+    {
+      "image": "frames/frame_00023_src_004140.jpg",
+      "mask": "hand_masks/frame_00023_src_004140.jpg.png",
+      "masked_fraction": 0.1119
+    }
+  ]
+}

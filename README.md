@@ -34,7 +34,10 @@ interactive concept explanations, and failure-mode checklist.
 - **Frame extraction:** turning a video into images that reconstruction tools can match.
 - **Camera calibration:** intrinsics, distortion, and extrinsics that describe each camera.
 - **SLAM pose:** an estimated camera path through 3D space.
+- **Frame quality diagnostics:** blur (Laplacian variance), exposure, and ORB-match overlap as quantitative readiness checks.
+- **Dynamic-object masking:** projecting MANO hand joints through rig calibration into COLMAP masks — and verifying the extrinsic convention empirically.
 - **COLMAP:** feature matching plus bundle adjustment to estimate cameras and sparse points.
+- **Trajectory evaluation:** Sim(3) Umeyama alignment with ATE and RPE, on camera centers rather than raw tvecs.
 - **NeRF:** a neural field that learns density and color for novel-view rendering.
 - **3D Gaussian Splatting:** a point-based neural renderer that can produce fast novel views.
 - **Failure analysis:** why motion blur, dynamic hands, fisheye distortion, and weak overlap matter.
@@ -86,8 +89,44 @@ ego-recon-demo \
   --output-dir outputs/sample_demo
 ```
 
-When `frames_manifest.json` is present, the parser also writes a lightweight
-COLMAP-vs-SLAM pose comparison.
+When `frames_manifest.json` is present, the parser also writes a
+COLMAP-vs-SLAM trajectory comparison: COLMAP camera centers (`C = -R^T t`) are
+aligned to SLAM positions with a Sim(3) Umeyama fit, and `colmap_vs_slam.json`
+reports ATE RMSE, RPE RMSE, and the recovered scale — the standard way to
+compare trajectories that live in different coordinate frames and scales.
+
+## Frame Quality Diagnostics
+
+Every run now writes `frame_quality.json`: per-frame blur (Laplacian variance
+on a central crop, so the fisheye border does not skew it), exposure
+statistics, ORB keypoint counts, and feature matches to the previous sampled
+frame. The summary lists the weakest consecutive pairs — exactly where COLMAP
+is most likely to fragment. Use `--skip-quality` to disable.
+
+## Hand Masks From Mocap + Calibration
+
+```bash
+make hand-masks
+```
+
+This projects the 3D MANO hand joints through the rig extrinsic chain and SLAM
+pose into the chosen camera and writes COLMAP-convention masks (white = used
+for features, black = masked) plus `hand_mask_report.json` and overlay
+previews. Two honest engineering lessons are built in:
+
+- **The extrinsic convention is selected empirically.** Four plausible
+  compositions of `T_c_b` and the SLAM pose are scored by in-bounds fraction
+  and depth plausibility (hands sit roughly an arm's length from a head rig);
+  the report records all candidate scores. Never trust a transform's name.
+- **Registration error is visible and documented.** The mocap-to-camera
+  alignment carries an offset of tens of pixels on this rig, so masks are
+  generously dilated and `hand_mask_preview_*.jpg` exists for human
+  verification. Production-quality masking needs a learned hand segmenter or a
+  refined hand-eye calibration — this artifact shows precisely why.
+
+Note `fisheye_cam0` faces away from the tabletop on this rig; `cam1` and the
+stereo pair see the workspace. A camera that does not see the hands is itself
+a reconstruction insight: it observes more static scene.
 
 To verify whether COLMAP is installed and run the generated commands when it is
 available:
@@ -129,8 +168,10 @@ make pages
 | `slam_point_cloud_preview.ply` | lightweight preview of the existing SLAM point cloud |
 | `frame_contact_sheet.svg` | visual index of extracted frames and nearest SLAM poses |
 | `colmap_commands.sh` | COLMAP feature, matching, mapping, and undistortion commands |
+| `frame_quality.json` | per-frame blur, exposure, and ORB-overlap diagnostics with weakest pairs |
+| `hand_masks/` + `hand_mask_report.json` | COLMAP-convention dynamic-region masks with convention-selection evidence |
 | `colmap_summary.json` / `colmap_summary.svg` | optional summary of a parsed COLMAP sparse model |
-| `colmap_vs_slam.json` / `colmap_vs_slam.svg` | optional trajectory comparison against nearest SLAM poses |
+| `colmap_vs_slam.json` / `colmap_vs_slam.svg` | optional Sim(3)-aligned ATE/RPE trajectory comparison against SLAM |
 | `colmap_run_report.json` / `colmap_run_report.md` | local COLMAP availability and execution report |
 | `nerf_3dgs_templates.sh` | command templates for NeRFStudio and Gaussian Splatting |
 | `failure_analysis.md` | checklist for diagnosing egocentric reconstruction failures |
